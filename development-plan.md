@@ -17,7 +17,7 @@ Deliverables:
 Days 1-2: Project Setup
   Next.js 14+ with TypeScript scaffolding
   Git repository with CI/CD pipeline (Vercel/GitHub Actions)
-  Tailwind CSS + shadcn/ui integration (Suggested by Olawale)
+  Tailwind CSS + chakra ui integration (Suggested by Olawale)
   Environment configuration (dev, staging, production)
 
 Days 3-4: API & Authentication
