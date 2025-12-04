@@ -150,7 +150,7 @@ export default function Footer() {
         </Flex>
 
         {/* Bottom section - Copyright */}
-        <Box mt={8} py={4} bg={'whiteAlpha.200'} borderRadius={{base:'xl',lg:'full'}}>
+        <Box mt={8} py={4} bg={'whiteAlpha.200'} borderRadius={{ base: 'xl', lg: 'full' }}>
           <Flex
             direction={{ base: 'column', md: 'row' }}
             justifyContent={'space-between'}
