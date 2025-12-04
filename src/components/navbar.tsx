@@ -103,7 +103,11 @@ export default function Navbar() {
             }}
             width="auto"
             height="auto"
-            p={4}
+            border={'1px'}
+            borderColor={'gray.400'}
+            borderRadius={'lg'}
+            p={3}
+            mr={4}
             cursor="pointer"
             onClick={toggleMenu}
           >
