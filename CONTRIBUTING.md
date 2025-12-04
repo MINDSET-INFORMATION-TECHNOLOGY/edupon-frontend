@@ -53,7 +53,7 @@ Fixed file size validation and added proper error handling
 for avatar uploads exceeding 5MB.
 \`\`\`
 
-##  Code Style
+## Code Style
 
 ### TypeScript
 
@@ -106,7 +106,7 @@ Before submitting a PR, ensure:
 - [ ] Related issue is referenced (if applicable)
 - [ ] Documentation updated if needed
 
-##  What Not to Do
+## What Not to Do
 
 - Don't commit directly to \`main\` or \`dev\` branches
 - Don't commit \`.env\` files or sensitive data

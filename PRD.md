@@ -53,12 +53,11 @@ Won’t-Have (for now): Video-based challenges, voice-based mentorship
 
 7. USER PERSONAS
 
-
 8. USER ROLES (User Stories & Acceptance Criteria)
 
 Role
 User Story
-Acceptance Criteria                                                             
+Acceptance Criteria  
 Suliat
 As a student, I want to showcase my achievements so I can get discovered
 EduPons generates a dynamic portfolio and updates it with challenge outcomes
@@ -68,7 +67,6 @@ Dashboard displays student participation, progress, and leaderboard rank
 Favour
 As a recruiter, I want to sponsor challenges and identify top performers
 EduPons provides branded challenge tools and performance analytics
-
 
 9. USER INTERFACE
 
@@ -84,7 +82,7 @@ Light/dark mode for accessibility
 10. TECHNICAL REQUIREMENTS
 
 Platforms: Web (mobile-first).
-Languages: JavaScript 
+Languages: JavaScript
 Frameworks: Front-end(React) Backend(Nest.js)
 Integrations: WhatsApp Business API, Paystack, SMS gateway  
 Security: NDPR-compliant data handling, encrypted storage
@@ -115,7 +113,6 @@ Phase 4: Expansion
 Q2–Q3 2026
 Ghana, Kenya, South Africa integrations
 
-
 13. RISK AND MITIGATIONS
 
 Risk
@@ -131,7 +128,6 @@ WhatsApp onboarding, tutorials, and local language UX
 Platform fatigue
 Focus on gamification and immediate value
 
-
 14. RESOURCES
 
 Human:
@@ -139,13 +135,12 @@ Human:
 4 Frontend Developers  
 6 Backend Developers  
 5 Product Designers
-1 DevOps 
+1 DevOps
 
-
-Tools: 
+Tools:
 Figma, Google Analytics, Mixpanel, GitHub, AWS/GCP.
 
-15. BUDGET 
+15. BUDGET
 
 Development: #50,000 (for subscription).
 
@@ -166,13 +161,13 @@ QA and testing reports.
 17. APPROVAL
 
 Submit PRD and roadmap to the executive team.  
-Review by legal and compliance. 
+Review by legal and compliance.
 Final sign-off by CEO and Head of Product.  
 Kickoff scheduled post-approval with sprint planning.
 
 18. APPENDIX
-EduPons Ideation Doc
-Market Assessment EduPons 
-Landing page PRD
-High fidelity Landing page wireframes
-EduPons Business Model Canvas 
+    EduPons Ideation Doc
+    Market Assessment EduPons
+    Landing page PRD
+    High fidelity Landing page wireframes
+    EduPons Business Model Canvas

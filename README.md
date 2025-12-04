@@ -41,11 +41,14 @@ npm install
 Create a \`.env.local\` file in the root directory:
 
 \`\`\`env
+
 # API Configuration
+
 NEXT_PUBLIC_API_URL=http://localhost:3001/api
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 
 # App Configuration
+
 NEXT_PUBLIC_APP_NAME=EduPons
 \`\`\`
 
@@ -62,23 +65,23 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 \`\`\`
 edupons/
 ├── src/
-│   ├── app/                    # Next.js App Router pages
-│   │   ├── layout.tsx         # Root layout with Chakra Provider
-│   │   ├── page.tsx           # Home page
-│   │   └── globals.css        # Global styles
-│   ├── components/            # Reusable UI components
-│   ├── lib/                   # Utility functions and configurations
-│   │   ├── api/              # API client and endpoints
-│   │   ├── env.ts            # Environment variable validation
-│   │   └── utils.ts          # Helper functions
-│   ├── theme/                # Chakra UI theme customization
-│   │   ├── index.ts          # Main theme export
-│   │   ├── colors.ts         # Color palette
-│   │   └── components.ts     # Component style overrides
-│   ├── types/                # TypeScript type definitions
-│   └── hooks/                # Custom React hooks
-├── public/                   # Static assets
-├── .github/                  # GitHub Actions workflows
+│ ├── app/ # Next.js App Router pages
+│ │ ├── layout.tsx # Root layout with Chakra Provider
+│ │ ├── page.tsx # Home page
+│ │ └── globals.css # Global styles
+│ ├── components/ # Reusable UI components
+│ ├── lib/ # Utility functions and configurations
+│ │ ├── api/ # API client and endpoints
+│ │ ├── env.ts # Environment variable validation
+│ │ └── utils.ts # Helper functions
+│ ├── theme/ # Chakra UI theme customization
+│ │ ├── index.ts # Main theme export
+│ │ ├── colors.ts # Color palette
+│ │ └── components.ts # Component style overrides
+│ ├── types/ # TypeScript type definitions
+│ └── hooks/ # Custom React hooks
+├── public/ # Static assets
+├── .github/ # GitHub Actions workflows
 └── ...config files
 \`\`\`
 
