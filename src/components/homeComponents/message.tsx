@@ -66,7 +66,7 @@ export default function CTASection() {
         px={{ base: 4, md: 14 }}
         py={8}
         minH={'300px'}
-        bgImage="url('/path-to-your-background-image.jpg')"
+        bgImage="url('/Last CTA.svg')"
         bgSize="cover"
         bgPosition="center"
         bgRepeat="no-repeat"
@@ -78,8 +78,8 @@ export default function CTASection() {
           left: 0,
           right: 0,
           bottom: 0,
-          bg: 'blue.600',
-          opacity: 0.9,
+          bg: 'brand.900',
+          opacity: 0.4,
           zIndex: 0,
         }}
       >
@@ -100,19 +100,19 @@ export default function CTASection() {
               maxW={isFormOpen ? 'auto' : '800px'}
               display="flex"
               flexDirection="column"
-              alignItems="center"
+              alignItems={isFormOpen ? 'flex-start' : 'center'}
               justifyContent="center"
             >
               <Heading
                 as="h2"
-                fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
+                fontSize={{ base: '3xl', md: '3xl', lg: '4xl' }}
                 fontWeight="bold"
                 mb={4}
                 lineHeight="1.2"
               >
                 Let’s Build Bridges Together
               </Heading>
-              <Text fontSize={{ base: 'md', md: 'sm' }} lineHeight="1.8" mb={8}>
+              <Text fontSize={{ base: 'md', md: 'sm' }} lineHeight="1.8" mb={0}>
                 Have questions, partnership ideas, or want to bring EduPons to your school or
                 company? We’d love to hear from you. Reach out and let’s create meaningful
                 connections in learning and opportunity.
@@ -129,6 +129,7 @@ export default function CTASection() {
                   color="blue.600"
                   px={8}
                   py={6}
+                  mt={6}
                   fontSize="md"
                   fontWeight="semibold"
                   _hover={{

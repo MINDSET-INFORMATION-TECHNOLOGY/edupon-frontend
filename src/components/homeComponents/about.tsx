@@ -12,26 +12,26 @@ import {
   SimpleGrid,
 } from '@chakra-ui/react';
 import { MdBusiness } from 'react-icons/md';
-import { IoIosSettings } from 'react-icons/io';
+import { GiOilySpiral } from 'react-icons/gi';
 
 const cards = [
   {
     title: 'For Students – Show What You Can Do',
     description:
       'Build your portfolio, join real projects, and earn badges that prove your skills. Get noticed by educators and companies looking for talent like you.',
-    icon: IoIosSettings,
+    icon: GiOilySpiral,
   },
   {
     title: 'For Educators – Motivate Beyond the Classroom',
     description:
       'Build your portfolio, join real projects, and earn badges that prove your skills. Get noticed by educators and companies looking for talent like you.',
-    icon: IoIosSettings,
+    icon: GiOilySpiral,
   },
   {
     title: "For Companies – Discover Tomorrow's Talent",
     description:
       'Build your portfolio, join real projects, and earn badges that prove your skills. Get noticed by educators and companies looking for talent like you.',
-    icon: IoIosSettings,
+    icon: GiOilySpiral,
   },
 ];
 
@@ -106,6 +106,7 @@ export default function About() {
                           bg={'gray.100'}
                           borderTopRadius="xl"
                           py={6}
+                          px={2}
                           as="h3"
                           fontSize={{ base: 'sm', md: 'md' }}
                           fontWeight="normal"
@@ -177,6 +178,7 @@ export default function About() {
                         bg={'gray.100'}
                         borderTopRadius="xl"
                         py={6}
+                        px={2}
                         as="h3"
                         fontSize={{ base: 'sm', md: 'md' }}
                         fontWeight="normal"

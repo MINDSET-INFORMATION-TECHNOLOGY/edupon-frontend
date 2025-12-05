@@ -3,7 +3,7 @@ import { Container, VStack, Heading, Text, Button, Flex, Box, Image } from '@cha
 export default function Hero() {
   return (
     <Box bgGradient="linear(to-b, white, brand.50)">
-      <Container maxW="container.xl" pt={{ base: 10, lg: 20 }}>
+      <Container maxW="container.xl" pt={{ base: 10, md: 20 }}>
         <VStack spacing={8} align="center" textAlign="center">
           <Flex direction={'column'} gap={8} align="center" textAlign="center">
             <Heading as="h1" size="2xl" maxW="2xl" color="gray.600">
@@ -38,7 +38,7 @@ export default function Hero() {
                 alt={'EduPons'}
                 width={150}
                 height={20}
-                w={{ base: '80px', md: '120px' }}
+                w={{ base: '80px', md: '160px' }}
                 h={'auto'}
                 transform="scaleX(-1)"
               />
@@ -47,7 +47,7 @@ export default function Hero() {
                 alt={'EduPons'}
                 width={150}
                 height={20}
-                w={{ base: '80px', md: '120px' }}
+                w={{ base: '80px', md: '160px' }}
                 h={'auto'}
               />
             </Flex>

@@ -113,7 +113,7 @@ export default function Testimonials() {
                       align={'left'}
                       mb={4}
                     >
-                      "{testimonial.quote}"
+                      &quot;{testimonial.quote}&quot;
                     </Text>
 
                     {/* User Info */}
