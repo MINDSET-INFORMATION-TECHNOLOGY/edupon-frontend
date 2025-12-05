@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <Box
-      borderBottom="1px"
+      borderBottom={{ base: '0px', lg: '1px' }}
       borderBottomColor="gray.300"
       position="fixed"
       top={0}
@@ -55,6 +55,7 @@ export default function Navbar() {
                 href="/about"
                 px={4}
                 py={3}
+                borderRadius="full"
                 color={'black'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
                 _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
@@ -65,7 +66,9 @@ export default function Navbar() {
                 href="/blogs"
                 px={4}
                 py={3}
+                borderRadius="full"
                 color={'black'}
+                _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
                 _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
               >
                 Blogs
@@ -74,6 +77,7 @@ export default function Navbar() {
                 href="/contact"
                 px={4}
                 py={3}
+                borderRadius="full"
                 color={'black'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
                 _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
@@ -115,7 +119,7 @@ export default function Navbar() {
             border={'1px'}
             borderColor={'gray.400'}
             borderRadius={'lg'}
-            p={3}
+            p={2}
             mr={4}
             cursor="pointer"
             onClick={toggleMenu}
@@ -129,7 +133,7 @@ export default function Navbar() {
               position="relative"
             >
               <Box
-                w={6}
+                w={5}
                 h={0.5}
                 bg={'black'}
                 borderRadius={'full'}
@@ -138,7 +142,7 @@ export default function Navbar() {
                 transform={isOpen ? 'rotate(45deg)' : 'translateY(-8px)'}
               ></Box>
               <Box
-                w={6}
+                w={5}
                 h={0.5}
                 bg={'black'}
                 borderRadius={'full'}
@@ -146,7 +150,7 @@ export default function Navbar() {
                 opacity={isOpen ? 0 : 1}
               ></Box>
               <Box
-                w={6}
+                w={5}
                 h={0.5}
                 bg={'black'}
                 borderRadius={'full'}
