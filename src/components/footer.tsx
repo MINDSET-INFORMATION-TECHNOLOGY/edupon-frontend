@@ -41,7 +41,12 @@ export default function Footer() {
                 h={'auto'}
               />
             </Box>
-            <Text color={'white'} fontSize={'sm'} lineHeight={{ base: '1.6', md: '1.8' }} maxW={{ md: '300px' }}>
+            <Text
+              color={'white'}
+              fontSize={'sm'}
+              lineHeight={{ base: '1.6', md: '1.8' }}
+              maxW={{ md: '300px' }}
+            >
               Connecting Students. Empowering Educators. Engaging Companies. A smarter bridge
               between learning and opportunity
             </Text>
@@ -128,7 +133,12 @@ export default function Footer() {
             </Flex>
           </Flex>
           {/* Column 3 - Contact Info */}
-          <Flex direction={'column'} gap={3} width={{ base: 'full', md: 'auto' }} maxW={{ md: '220px', lg: 'none' }}>
+          <Flex
+            direction={'column'}
+            gap={3}
+            width={{ base: 'full', md: 'auto' }}
+            maxW={{ md: '220px', lg: 'none' }}
+          >
             <Flex alignItems={'flex-start'} gap={2}>
               <PhoneIcon color={'white'} mt={1} boxSize={5} flexShrink={0} />
               <Text color={'white'} fontSize={'sm'}>
