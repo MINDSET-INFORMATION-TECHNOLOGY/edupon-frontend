@@ -10,7 +10,16 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <Box borderBottom="1px" borderBottomColor="gray.300" position="relative">
+    <Box
+      borderBottom="1px"
+      borderBottomColor="gray.300"
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
+      bg="white"
+      zIndex={1000}
+    >
       <Container maxW="container.xl" p={0}>
         <Flex
           direction={'row'}

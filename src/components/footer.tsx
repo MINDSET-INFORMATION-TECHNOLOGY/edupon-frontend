@@ -18,15 +18,17 @@ export default function Footer() {
           width={'full'}
           gap={{
             base: 12,
-            md: 12,
+            md: 6,
+            lg: 12,
           }}
         >
           {/* Left section - Logo and tagline */}
           <Flex
             direction={'column'}
             justifyContent={'flex-start'}
-            width={{ base: 'full', md: '35%' }}
+            width={{ base: 'full', md: '28%', lg: '35%' }}
             gap={4}
+            flexShrink={{ md: 0 }}
           >
             <Box>
               <Image
@@ -39,7 +41,7 @@ export default function Footer() {
                 h={'auto'}
               />
             </Box>
-            <Text color={'white'} fontSize={'sm'} lineHeight={'1.6'}>
+            <Text color={'white'} fontSize={'sm'} lineHeight={{ base: '1.6', md: '1.8' }} maxW={{ md: '300px' }}>
               Connecting Students. Empowering Educators. Engaging Companies. A smarter bridge
               between learning and opportunity
             </Text>
@@ -48,12 +50,13 @@ export default function Footer() {
           {/* Middle section - Navigation links */}
           <Flex
             direction={'row'}
-            justifyContent={'space-between'}
-            width={{ base: 'full', md: 'auto' }}
-            gap={20}
+            justifyContent={{ base: 'space-between', md: 'flex-start', lg: 'space-between' }}
+            width={{ base: 'full', md: 'auto', lg: 'auto' }}
+            gap={{ base: 12, md: 8, lg: 20 }}
+            flexShrink={{ md: 0 }}
           >
             {/* Column 1 */}
-            <Flex direction={'column'} gap={3}>
+            <Flex direction={'column'} gap={3} minW={{ md: 'max-content' }}>
               <Link
                 href="/"
                 color={'white'}
@@ -89,7 +92,7 @@ export default function Footer() {
             </Flex>
 
             {/* Column 2 */}
-            <Flex direction={'column'} gap={3}>
+            <Flex direction={'column'} gap={3} minW={{ md: 'max-content' }}>
               <Link
                 href="/terms-of-use"
                 color={'white'}
@@ -125,16 +128,16 @@ export default function Footer() {
             </Flex>
           </Flex>
           {/* Column 3 - Contact Info */}
-          <Flex direction={'column'} gap={3}>
+          <Flex direction={'column'} gap={3} width={{ base: 'full', md: 'auto' }} maxW={{ md: '220px', lg: 'none' }}>
             <Flex alignItems={'flex-start'} gap={2}>
-              <PhoneIcon color={'white'} mt={1} boxSize={5} />
+              <PhoneIcon color={'white'} mt={1} boxSize={5} flexShrink={0} />
               <Text color={'white'} fontSize={'sm'}>
                 +234 806 769 7068
               </Text>
             </Flex>
 
             <Flex alignItems={'flex-start'} gap={2}>
-              <EmailIcon color={'white'} mt={1} boxSize={5} />
+              <EmailIcon color={'white'} mt={1} boxSize={5} flexShrink={0} />
               <Text color={'white'} fontSize={'sm'}>
                 hello@edupons.com
               </Text>
@@ -142,7 +145,7 @@ export default function Footer() {
 
             <Flex alignItems={'flex-start'} gap={2}>
               <Box as={MdLocationOn} color={'white'} mt={1} boxSize={5} flexShrink={0} />
-              <Text color={'white'} fontSize={'sm'} whiteSpace={'nowrap'}>
+              <Text color={'white'} fontSize={'sm'} whiteSpace={{ lg: 'nowrap' }}>
                 No. 24, Behind Airport Road, Ikeja. Lagos.
               </Text>
             </Flex>
