@@ -1,16 +1,30 @@
-'use client'
+'use client';
+
+import { useSearchParams } from 'next/navigation';
 
 import {
-  VStack, Box, Text, Heading, Tabs, TabList, TabPanels, Tab, TabPanel, Container
+  VStack,
+  Box,
+  Text,
+  Heading,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
 } from '@chakra-ui/react';
 
 import TermsOfUse from './components/TermsOfUse';
 import PrivacyPolicy from './components/PrivacyPolicy';
 
 const Policies = () => {
+  const searchParams = useSearchParams();
+  const tab = searchParams.get('tab'); // get ?tab=privacy
+  const defaultIndex = tab === 'privacy' ? 1 : 0;
+
   return (
-    <VStack spacing={4} mb="4">
-      <Box textAlign="center" mt="30px">
+    <VStack spacing={4} mb="4" mt="150px">
+      <Box textAlign="center">
         <Text fontSize={12} color="#1E3A8A">
           Last updated on 13th November 2025
         </Text>
@@ -24,7 +38,7 @@ const Policies = () => {
         </Text>
       </Box>
 
-      <Tabs variant="unstyled" colorScheme="blue" h="100%" w='100%'>
+      <Tabs variant="unstyled" colorScheme="blue" h="100%" w="100%" defaultIndex={defaultIndex}>
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
           <Box w="248px" h="52px" borderWidth="1px" rounded="30px" p={1}>
             <TabList display="flex" flexDirection="row" justifyContent="center" gap={4} h="100%">
@@ -38,7 +52,13 @@ const Policies = () => {
                 borderRadius="full"
                 transition="background 0.2s ease, color 0.2s ease"
                 _hover={{ bg: 'brand.500', color: 'white' }}
-                _selected={{ bg: 'brand.500', color: 'white', borderRadius: 'full', boxShadow: 'none', borderBottom: 'none' }}
+                _selected={{
+                  bg: 'brand.500',
+                  color: 'white',
+                  borderRadius: 'full',
+                  boxShadow: 'none',
+                  borderBottom: 'none',
+                }}
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
@@ -56,7 +76,13 @@ const Policies = () => {
                 borderRadius="full"
                 transition="background 0.2s ease, color 0.2s ease"
                 _hover={{ bg: 'brand.500', color: 'white' }}
-                _selected={{ bg: 'brand.500', color: 'white', borderRadius: 'full', boxShadow: 'none', borderBottom: 'none' }}
+                _selected={{
+                  bg: 'brand.500',
+                  color: 'white',
+                  borderRadius: 'full',
+                  boxShadow: 'none',
+                  borderBottom: 'none',
+                }}
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
@@ -66,7 +92,7 @@ const Policies = () => {
             </TabList>
           </Box>
 
-          <Box display="flex" flexDirection="column" mt='80px' w='93%'>
+          <Box display="flex" flexDirection="column" mt="50px" w="93%">
             <TabPanels>
               <TabPanel>
                 <TermsOfUse />
@@ -80,7 +106,7 @@ const Policies = () => {
         </Box>
       </Tabs>
     </VStack>
-  )
-}
+  );
+};
 
 export default Policies;

@@ -11,6 +11,7 @@ export default function Navbar() {
 
   return (
     <Box
+      marginBottom="50px"
       borderBottom={{ base: '0px', lg: '1px' }}
       borderBottomColor="gray.300"
       position="fixed"

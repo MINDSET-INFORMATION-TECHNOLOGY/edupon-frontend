@@ -107,7 +107,7 @@ export default function Footer() {
                 Terms of Use
               </Link>
               <Link
-                href="/"
+                href="/policies?tab=privacy"
                 color={'white'}
                 _hover={{ textDecoration: 'underline' }}
                 fontSize={'sm'}
