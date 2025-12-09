@@ -91,7 +91,7 @@ export default function Footer() {
             {/* Column 2 */}
             <Flex direction={'column'} gap={3}>
               <Link
-                href="/terms-of-use"
+                href="/policies"
                 color={'white'}
                 _hover={{ textDecoration: 'underline' }}
                 fontSize={'sm'}
@@ -99,7 +99,7 @@ export default function Footer() {
                 Terms of Use
               </Link>
               <Link
-                href="/privacy-policy"
+                href="/"
                 color={'white'}
                 _hover={{ textDecoration: 'underline' }}
                 fontSize={'sm'}
