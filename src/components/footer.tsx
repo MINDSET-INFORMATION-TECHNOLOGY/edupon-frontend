@@ -79,7 +79,7 @@ export default function Footer() {
                 About us
               </Link>
               <Link
-                href="/blogs"
+                href="/blog"
                 color={'white'}
                 _hover={{ textDecoration: 'underline' }}
                 fontSize={'sm'}
