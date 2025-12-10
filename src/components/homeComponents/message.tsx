@@ -13,6 +13,7 @@ import {
   HStack,
   IconButton,
   Text,
+  FormErrorMessage,
 } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
@@ -25,6 +26,21 @@ export default function CTASection() {
     email: '',
     message: '',
   });
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+
+  // Validation functions
+  const validateEmail = (email: string): string => {
+    if (!email) return 'Email is required';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) return 'Please enter a valid email address';
+    return '';
+  };
+
+  const validateRequired = (value: string, fieldName: string): string => {
+    if (!value || value.trim() === '') return `${fieldName} is required`;
+    return '';
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -32,10 +48,70 @@ export default function CTASection() {
       ...prev,
       [name]: value,
     }));
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+
+    // Validate on blur
+    let error = '';
+    switch (field) {
+      case 'firstName':
+        error = validateRequired(formData.firstName, 'First name');
+        break;
+      case 'lastName':
+        error = validateRequired(formData.lastName, 'Last name');
+        break;
+      case 'email':
+        error = validateEmail(formData.email);
+        break;
+      case 'message':
+        error = validateRequired(formData.message, 'Message');
+        break;
+    }
+
+    if (error) {
+      setErrors((prev) => ({ ...prev, [field]: error }));
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate all fields
+    const newErrors: { [key: string]: string } = {};
+    newErrors.firstName = validateRequired(formData.firstName, 'First name');
+    newErrors.lastName = validateRequired(formData.lastName, 'Last name');
+    newErrors.email = validateEmail(formData.email);
+    newErrors.message = validateRequired(formData.message, 'Message');
+
+    // Filter out empty errors
+    const filteredErrors = Object.fromEntries(
+      Object.entries(newErrors).filter(([_, value]) => value !== '')
+    );
+
+    setErrors(filteredErrors);
+
+    // If there are errors, don't submit
+    if (Object.keys(filteredErrors).length > 0) {
+      // Mark all fields as touched to show errors
+      setTouched({
+        firstName: true,
+        lastName: true,
+        email: true,
+        message: true,
+      });
+      return;
+    }
+
     console.log('Form submitted:', formData);
     // Form submission logic will be added here
 
@@ -46,11 +122,16 @@ export default function CTASection() {
       email: '',
       message: '',
     });
+    setErrors({});
+    setTouched({});
     setIsFormOpen(false);
   };
 
   const handleClose = () => {
     setIsFormOpen(false);
+    // Reset errors when closing
+    setErrors({});
+    setTouched({});
   };
 
   const handleOpen = () => {
@@ -183,7 +264,7 @@ export default function CTASection() {
                     <VStack spacing={2} align="stretch">
                       {/* First Name and Last Name */}
                       <HStack spacing={4} align="flex-start">
-                        <FormControl isRequired>
+                        <FormControl isRequired isInvalid={touched.firstName && !!errors.firstName}>
                           <FormLabel fontSize="xs" fontWeight="medium" mb={1.5} color="gray.700">
                             First Name
                           </FormLabel>
@@ -192,6 +273,7 @@ export default function CTASection() {
                             placeholder="Enter first name"
                             value={formData.firstName}
                             onChange={handleChange}
+                            onBlur={() => handleBlur('firstName')}
                             borderRadius="md"
                             border="1px solid"
                             borderColor="gray.200"
@@ -202,9 +284,10 @@ export default function CTASection() {
                               boxShadow: '0 0 0 1px var(--chakra-colors-blue-500)',
                             }}
                           />
+                          <FormErrorMessage fontSize="xs">{errors.firstName}</FormErrorMessage>
                         </FormControl>
 
-                        <FormControl isRequired>
+                        <FormControl isRequired isInvalid={touched.lastName && !!errors.lastName}>
                           <FormLabel fontSize="xs" fontWeight="medium" mb={1.5} color="gray.700">
                             Last Name
                           </FormLabel>
@@ -213,6 +296,7 @@ export default function CTASection() {
                             placeholder="Enter last name"
                             value={formData.lastName}
                             onChange={handleChange}
+                            onBlur={() => handleBlur('lastName')}
                             borderRadius="md"
                             border="1px solid"
                             borderColor="gray.200"
@@ -223,11 +307,12 @@ export default function CTASection() {
                               boxShadow: '0 0 0 1px var(--chakra-colors-blue-500)',
                             }}
                           />
+                          <FormErrorMessage fontSize="xs">{errors.lastName}</FormErrorMessage>
                         </FormControl>
                       </HStack>
 
                       {/* Email */}
-                      <FormControl isRequired>
+                      <FormControl isRequired isInvalid={touched.email && !!errors.email}>
                         <FormLabel fontSize="xs" fontWeight="medium" mb={1.5} color="gray.700">
                           Email
                         </FormLabel>
@@ -237,6 +322,7 @@ export default function CTASection() {
                           placeholder="Enter email address"
                           value={formData.email}
                           onChange={handleChange}
+                          onBlur={() => handleBlur('email')}
                           borderRadius="md"
                           border="1px solid"
                           borderColor="gray.200"
@@ -247,10 +333,11 @@ export default function CTASection() {
                             boxShadow: '0 0 0 1px var(--chakra-colors-blue-500)',
                           }}
                         />
+                        <FormErrorMessage fontSize="xs">{errors.email}</FormErrorMessage>
                       </FormControl>
 
                       {/* Message */}
-                      <FormControl isRequired>
+                      <FormControl isRequired isInvalid={touched.message && !!errors.message}>
                         <FormLabel fontSize="xs" fontWeight="medium" mb={1.5} color="gray.700">
                           Message
                         </FormLabel>
@@ -270,7 +357,9 @@ export default function CTASection() {
                             boxShadow: '0 0 0 1px var(--chakra-colors-blue-500)',
                           }}
                           resize="none"
+                          onBlur={() => handleBlur('message')}
                         />
+                        <FormErrorMessage fontSize="xs">{errors.message}</FormErrorMessage>
                       </FormControl>
 
                       {/* Submit Button */}
