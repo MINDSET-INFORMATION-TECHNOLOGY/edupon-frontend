@@ -3,16 +3,18 @@
 import { Image } from '@chakra-ui/next-js';
 import { Box, Container, Flex, Stack, Button, Link, Collapse } from '@chakra-ui/react';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
     <Box
       borderBottom={{ base: '0px', lg: '1px' }}
-      borderBottomColor="gray.300"
+      borderBottomColor="gray.100"
       position="fixed"
       top={0}
       left={0}
@@ -56,7 +58,8 @@ export default function Navbar() {
                 px={4}
                 py={3}
                 borderRadius="full"
-                color={'black'}
+                color={pathname === '/about' ? 'white' : 'black'}
+                bg={pathname === '/about' ? 'brand.500' : 'transparent'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
                 _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
               >
@@ -67,7 +70,8 @@ export default function Navbar() {
                 px={4}
                 py={3}
                 borderRadius="full"
-                color={'black'}
+                color={pathname === '/blogs' ? 'white' : 'black'}
+                bg={pathname === '/blogs' ? 'brand.500' : 'transparent'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
                 _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
               >
@@ -78,7 +82,8 @@ export default function Navbar() {
                 px={4}
                 py={3}
                 borderRadius="full"
-                color={'black'}
+                color={pathname === '/contact' ? 'white' : 'black'}
+                bg={pathname === '/contact' ? 'brand.500' : 'transparent'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
                 _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
               >
@@ -187,7 +192,8 @@ export default function Navbar() {
               <Link
                 href="/about"
                 py={2}
-                color={'black'}
+                color={pathname === '/about' ? 'brand.500' : 'black'}
+                fontWeight={pathname === '/about' ? 'bold' : 'normal'}
                 _hover={{ color: 'brand.500' }}
                 onClick={toggleMenu}
               >
@@ -196,7 +202,8 @@ export default function Navbar() {
               <Link
                 href="/blogs"
                 py={2}
-                color={'black'}
+                color={pathname === '/blogs' ? 'brand.500' : 'black'}
+                fontWeight={pathname === '/blogs' ? 'bold' : 'normal'}
                 _hover={{ color: 'brand.500' }}
                 onClick={toggleMenu}
               >
@@ -205,7 +212,8 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 py={2}
-                color={'black'}
+                color={pathname === '/contact' ? 'brand.500' : 'black'}
+                fontWeight={pathname === '/contact' ? 'bold' : 'normal'}
                 _hover={{ color: 'brand.500' }}
                 onClick={toggleMenu}
               >
