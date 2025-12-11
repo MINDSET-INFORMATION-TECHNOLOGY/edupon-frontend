@@ -111,7 +111,7 @@ export default function Home() {
         }}
       />
 
-      <Box minH="100vh" bg="gray.50" mt="100px">
+      <Box minH="100vh" bg="gray.50" >
         <Hero />
         <Container maxW="container.xl">
           <Flex direction="column" gap={12}>
