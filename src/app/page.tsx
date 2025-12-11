@@ -75,10 +75,7 @@ export default function Home() {
             logo: `${process.env.NEXT_PUBLIC_APP_URL}/logo.png`,
             description:
               'A role-based platform designed to unify students, educators, and companies into a single ecosystem that promotes visibility, engagement, and career readiness.',
-            sameAs: [
-               'https://twitter.com/edupons',
-               'https://linkedin.com/company/edupons',
-            ],
+            sameAs: ['https://twitter.com/edupons', 'https://linkedin.com/company/edupons'],
             contactPoint: {
               '@type': 'ContactPoint',
               contactType: 'Customer Support',

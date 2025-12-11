@@ -30,8 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Blog - Latest Articles & Insights | EduPons',
-    description:
-      'Explore articles about education, career development, and technology.',
+    description: 'Explore articles about education, career development, and technology.',
   },
   alternates: {
     canonical: '/blog',

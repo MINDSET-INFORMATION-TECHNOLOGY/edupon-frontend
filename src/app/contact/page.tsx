@@ -7,7 +7,7 @@ import ContactForm from '@/app/contact/contactUsComponents/contactForm';
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    'Get in touch with EduPons. Have questions about our platform? Want to partner with us? Reach out to our team and we\'ll get back to you as soon as possible.',
+    "Get in touch with EduPons. Have questions about our platform? Want to partner with us? Reach out to our team and we'll get back to you as soon as possible.",
   keywords: [
     'contact EduPons',
     'get in touch',
@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Contact Us | EduPons',
-    description: 'Get in touch with EduPons. We\'re here to help!',
+    description: "Get in touch with EduPons. We're here to help!",
     type: 'website',
     url: '/contact',
   },
   twitter: {
     card: 'summary',
     title: 'Contact Us | EduPons',
-    description: 'Get in touch with EduPons. We\'re here to help!',
+    description: "Get in touch with EduPons. We're here to help!",
   },
   alternates: {
     canonical: '/contact',
