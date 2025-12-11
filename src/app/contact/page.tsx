@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { Box, Container } from '@chakra-ui/react';
-import Hero from '@/components/contactUsComponents/hero';
-import ContactForm from '@/components/contactUsComponents/contactForm';
+import Hero from '@/app/contact/contactUsComponents/hero';
+import ContactForm from '@/app/contact/contactUsComponents/contactForm';
 
 // SEO Metadata for contact page
 export const metadata: Metadata = {
