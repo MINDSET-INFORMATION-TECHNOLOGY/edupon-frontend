@@ -24,7 +24,7 @@ export default function PoliciesClient() {
   const searchParams = useSearchParams();
   const tab = searchParams.get('tab');
   const initialIndex = tab === 'privacy' ? 1 : 0;
-  
+
   // Controlled tab state
   const [tabIndex, setTabIndex] = useState(initialIndex);
 
@@ -44,11 +44,11 @@ export default function PoliciesClient() {
         </Text>
       </Box>
 
-      <Tabs 
-        variant="unstyled" 
-        colorScheme="blue" 
-        h="100%" 
-        w="100%" 
+      <Tabs
+        variant="unstyled"
+        colorScheme="blue"
+        h="100%"
+        w="100%"
         index={tabIndex}
         onChange={setTabIndex}
       >
