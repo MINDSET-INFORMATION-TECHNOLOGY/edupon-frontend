@@ -11,8 +11,15 @@ export default function Navbar() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  // Helper function to check if link is active
+  const isActive = (path: string) => {
+    if (path === '/') return pathname === '/';
+    return pathname.startsWith(path);
+  };
+
   return (
     <Box
+      marginBottom="50px"
       borderBottom={{ base: '0px', lg: '1px' }}
       borderBottomColor="gray.100"
       position="fixed"
@@ -58,22 +65,20 @@ export default function Navbar() {
                 px={4}
                 py={3}
                 borderRadius="full"
-                color={pathname === '/about' ? 'white' : 'black'}
-                bg={pathname === '/about' ? 'brand.500' : 'transparent'}
+                color={isActive('/about') ? 'white' : 'black'}
+                bg={isActive('/about') ? 'brand.500' : 'transparent'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
-                _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
               >
                 About Us
               </Link>
               <Link
-                href="/blogs"
+                href="/blog"
                 px={4}
                 py={3}
                 borderRadius="full"
-                color={pathname === '/blogs' ? 'white' : 'black'}
-                bg={pathname === '/blogs' ? 'brand.500' : 'transparent'}
+                color={isActive('/blog') ? 'white' : 'black'}
+                bg={isActive('/blog') ? 'brand.500' : 'transparent'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
-                _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
               >
                 Blogs
               </Link>
@@ -82,10 +87,9 @@ export default function Navbar() {
                 px={4}
                 py={3}
                 borderRadius="full"
-                color={pathname === '/contact' ? 'white' : 'black'}
-                bg={pathname === '/contact' ? 'brand.500' : 'transparent'}
+                color={isActive('/contact') ? 'white' : 'black'}
+                bg={isActive('/contact') ? 'brand.500' : 'transparent'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
-                _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
               >
                 Contact Us
               </Link>
@@ -192,18 +196,18 @@ export default function Navbar() {
               <Link
                 href="/about"
                 py={2}
-                color={pathname === '/about' ? 'brand.500' : 'black'}
-                fontWeight={pathname === '/about' ? 'bold' : 'normal'}
+                color={isActive('/about') ? 'brand.500' : 'black'}
+                fontWeight={isActive('/about') ? 'bold' : 'normal'}
                 _hover={{ color: 'brand.500' }}
                 onClick={toggleMenu}
               >
                 About Us
               </Link>
               <Link
-                href="/blogs"
+                href="/blog"
                 py={2}
-                color={pathname === '/blogs' ? 'brand.500' : 'black'}
-                fontWeight={pathname === '/blogs' ? 'bold' : 'normal'}
+                color={isActive('/blog') ? 'brand.500' : 'black'}
+                fontWeight={isActive('/blog') ? 'bold' : 'normal'}
                 _hover={{ color: 'brand.500' }}
                 onClick={toggleMenu}
               >
@@ -212,8 +216,8 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 py={2}
-                color={pathname === '/contact' ? 'brand.500' : 'black'}
-                fontWeight={pathname === '/contact' ? 'bold' : 'normal'}
+                color={isActive('/contact') ? 'brand.500' : 'black'}
+                fontWeight={isActive('/contact') ? 'bold' : 'normal'}
                 _hover={{ color: 'brand.500' }}
                 onClick={toggleMenu}
               >
