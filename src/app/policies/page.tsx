@@ -1,112 +1,82 @@
-'use client';
+import { Metadata } from 'next';
+import { Suspense } from 'react';
+import PoliciesClient from './components/PoliciesClient';
+import PoliciesSkeleton from './components/PoliciesSkeleton';
 
-import { useSearchParams } from 'next/navigation';
-
-import {
-  VStack,
-  Box,
-  Text,
-  Heading,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-} from '@chakra-ui/react';
-
-import TermsOfUse from './components/TermsOfUse';
-import PrivacyPolicy from './components/PrivacyPolicy';
-
-const Policies = () => {
-  const searchParams = useSearchParams();
-  const tab = searchParams.get('tab'); // get ?tab=privacy
-  const defaultIndex = tab === 'privacy' ? 1 : 0;
-
-  return (
-    <VStack spacing={4} mb="4" mt="150px">
-      <Box textAlign="center">
-        <Text fontSize={12} color="#1E3A8A">
-          Last updated on 13th November 2025
-        </Text>
-
-        <Heading fontSize={48} color="#131515" fontWeight="normal">
-          Policies
-        </Heading>
-
-        <Text fontSize={16} color="#131515">
-          Our commitment to transparency and trust.
-        </Text>
-      </Box>
-
-      <Tabs variant="unstyled" colorScheme="blue" h="100%" w="100%" defaultIndex={defaultIndex}>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Box w="248px" h="52px" borderWidth="1px" rounded="30px" p={1}>
-            <TabList display="flex" flexDirection="row" justifyContent="center" gap={4} h="100%">
-              <Tab
-                w="125px"
-                h="44px"
-                px="9px"
-                py="10px"
-                fontSize={14}
-                color="#505959"
-                borderRadius="full"
-                transition="background 0.2s ease, color 0.2s ease"
-                _hover={{ bg: 'brand.500', color: 'white' }}
-                _selected={{
-                  bg: 'brand.500',
-                  color: 'white',
-                  borderRadius: 'full',
-                  boxShadow: 'none',
-                  borderBottom: 'none',
-                }}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                Terms of use
-              </Tab>
-
-              <Tab
-                w="135px"
-                h="44px"
-                px="9px"
-                py="10px"
-                fontSize={14}
-                color="#505959"
-                borderRadius="full"
-                transition="background 0.2s ease, color 0.2s ease"
-                _hover={{ bg: 'brand.500', color: 'white' }}
-                _selected={{
-                  bg: 'brand.500',
-                  color: 'white',
-                  borderRadius: 'full',
-                  boxShadow: 'none',
-                  borderBottom: 'none',
-                }}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                Privacy policy
-              </Tab>
-            </TabList>
-          </Box>
-
-          <Box display="flex" flexDirection="column" mt="50px" w="93%">
-            <TabPanels>
-              <TabPanel>
-                <TermsOfUse />
-              </TabPanel>
-
-              <TabPanel>
-                <PrivacyPolicy />
-              </TabPanel>
-            </TabPanels>
-          </Box>
-        </Box>
-      </Tabs>
-    </VStack>
-  );
+// SEO Metadata for policies page
+export const metadata: Metadata = {
+  title: 'Privacy Policy & Terms of Use',
+  description:
+    'Read EduPons privacy policy and terms of use. Learn how we protect your data, handle user information, and outline the terms governing our educational platform.',
+  keywords: [
+    'privacy policy',
+    'terms of use',
+    'terms and conditions',
+    'data protection',
+    'user agreement',
+    'EduPons policies',
+    'legal',
+    'GDPR',
+    'data privacy',
+  ],
+  openGraph: {
+    title: 'Privacy Policy & Terms of Use | EduPons',
+    description:
+      'Our commitment to transparency and trust. Read our privacy policy and terms of use.',
+    type: 'website',
+    url: '/policies',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Privacy Policy & Terms of Use | EduPons',
+    description:
+      'Our commitment to transparency and trust. Read our privacy policy and terms of use.',
+  },
+  alternates: {
+    canonical: '/policies',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
-export default Policies;
+/**
+ * Policies page - Server Component with SEO optimization
+ * Displays Terms of Use and Privacy Policy with tab navigation
+ * 
+ * @route /policies
+ * @query tab - Optional query param to select tab ('privacy' or 'terms')
+ */
+export default function PoliciesPage() {
+  return (
+    <>
+      {/* JSON-LD Structured Data for Legal Pages */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: 'Privacy Policy & Terms of Use',
+            description:
+              'EduPons privacy policy and terms of use governing the educational platform.',
+            url: `${process.env.NEXT_PUBLIC_APP_URL}/policies`,
+            publisher: {
+              '@type': 'Organization',
+              name: 'EduPons',
+              url: process.env.NEXT_PUBLIC_APP_URL,
+            },
+            dateModified: '2025-11-13',
+            inLanguage: 'en-US',
+          }),
+        }}
+      />
+
+      {/* Suspense boundary with SEO-friendly skeleton */}
+      <Suspense fallback={<PoliciesSkeleton />}>
+        <PoliciesClient />
+      </Suspense>
+    </>
+  );
+}
