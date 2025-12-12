@@ -3,14 +3,23 @@
 import { Image } from '@chakra-ui/next-js';
 import { Box, Container, Flex, Stack, Button, Link, Collapse } from '@chakra-ui/react';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  // Helper function to check if link is active
+  const isActive = (path: string) => {
+    if (path === '/') return pathname === '/';
+    return pathname.startsWith(path);
+  };
+
   return (
     <Box
+      marginBottom="50px"
       borderBottom={{ base: '0px', lg: '1px' }}
       borderBottomColor="gray.300"
       position="fixed"
@@ -56,20 +65,20 @@ export default function Navbar() {
                 px={4}
                 py={3}
                 borderRadius="full"
-                color={'black'}
+                color={isActive('/about') ? 'white' : 'black'}
+                bg={isActive('/about') ? 'brand.500' : 'transparent'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
-                _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
               >
                 About Us
               </Link>
               <Link
-                href="/blogs"
+                href="/blog"
                 px={4}
                 py={3}
                 borderRadius="full"
-                color={'black'}
+                color={isActive('/blog') ? 'white' : 'black'}
+                bg={isActive('/blog') ? 'brand.500' : 'transparent'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
-                _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
               >
                 Blogs
               </Link>
@@ -78,9 +87,9 @@ export default function Navbar() {
                 px={4}
                 py={3}
                 borderRadius="full"
-                color={'black'}
+                color={isActive('/contact') ? 'white' : 'black'}
+                bg={isActive('/contact') ? 'brand.500' : 'transparent'}
                 _hover={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
-                _active={{ bg: 'brand.500', color: 'white', borderRadius: 'full' }}
               >
                 Contact Us
               </Link>
@@ -187,16 +196,18 @@ export default function Navbar() {
               <Link
                 href="/about"
                 py={2}
-                color={'black'}
+                color={isActive('/about') ? 'brand.500' : 'black'}
+                fontWeight={isActive('/about') ? 'bold' : 'normal'}
                 _hover={{ color: 'brand.500' }}
                 onClick={toggleMenu}
               >
                 About Us
               </Link>
               <Link
-                href="/blogs"
+                href="/blog"
                 py={2}
-                color={'black'}
+                color={isActive('/blog') ? 'brand.500' : 'black'}
+                fontWeight={isActive('/blog') ? 'bold' : 'normal'}
                 _hover={{ color: 'brand.500' }}
                 onClick={toggleMenu}
               >
@@ -205,7 +216,8 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 py={2}
-                color={'black'}
+                color={isActive('/contact') ? 'brand.500' : 'black'}
+                fontWeight={isActive('/contact') ? 'bold' : 'normal'}
                 _hover={{ color: 'brand.500' }}
                 onClick={toggleMenu}
               >

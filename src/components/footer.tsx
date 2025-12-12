@@ -79,7 +79,7 @@ export default function Footer() {
                 About us
               </Link>
               <Link
-                href="/blogs"
+                href="/blog"
                 color={'white'}
                 _hover={{ textDecoration: 'underline' }}
                 fontSize={'sm'}
@@ -99,7 +99,7 @@ export default function Footer() {
             {/* Column 2 */}
             <Flex direction={'column'} gap={3} minW={{ md: 'max-content' }}>
               <Link
-                href="/terms-of-use"
+                href="/policies"
                 color={'white'}
                 _hover={{ textDecoration: 'underline' }}
                 fontSize={'sm'}
@@ -107,7 +107,7 @@ export default function Footer() {
                 Terms of Use
               </Link>
               <Link
-                href="/privacy-policy"
+                href="/policies?tab=privacy"
                 color={'white'}
                 _hover={{ textDecoration: 'underline' }}
                 fontSize={'sm'}

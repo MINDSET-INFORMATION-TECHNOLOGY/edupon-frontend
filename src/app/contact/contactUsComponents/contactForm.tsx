@@ -18,6 +18,7 @@ import {
   InputGroup,
   InputLeftAddon,
   Checkbox,
+  FormErrorMessage,
 } from '@chakra-ui/react';
 import { MdBusiness } from 'react-icons/md';
 import { useState } from 'react';
@@ -32,6 +33,8 @@ export default function ContactForm() {
     message: '',
   });
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
   const countryData: { [key: string]: { abbr: string; name: string } } = {
     '+1': { abbr: 'US', name: 'United States' },
@@ -49,6 +52,27 @@ export default function ContactForm() {
     '+233': { abbr: 'GH', name: 'Ghana' },
   };
 
+  // Validation functions
+  const validateEmail = (email: string): string => {
+    if (!email) return 'Email is required';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) return 'Please enter a valid email address';
+    return '';
+  };
+
+  const validateRequired = (value: string, fieldName: string): string => {
+    if (!value || value.trim() === '') return `${fieldName} is required`;
+    return '';
+  };
+
+  const validatePhone = (phone: string): string => {
+    if (!phone) return 'Phone number is required';
+    const phoneRegex = /^[0-9\s-]+$/;
+    if (!phoneRegex.test(phone)) return 'Please enter a valid phone number';
+    if (phone.replace(/[\s-]/g, '').length < 7) return 'Phone number is too short';
+    return '';
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -57,10 +81,81 @@ export default function ContactForm() {
       ...prev,
       [name]: value,
     }));
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+
+    // Validate on blur
+    let error = '';
+    switch (field) {
+      case 'firstName':
+        error = validateRequired(formData.firstName, 'First name');
+        break;
+      case 'lastName':
+        error = validateRequired(formData.lastName, 'Last name');
+        break;
+      case 'email':
+        error = validateEmail(formData.email);
+        break;
+      case 'phoneNumber':
+        error = validatePhone(formData.phoneNumber);
+        break;
+      case 'message':
+        error = validateRequired(formData.message, 'Message');
+        break;
+    }
+
+    if (error) {
+      setErrors((prev) => ({ ...prev, [field]: error }));
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate all fields
+    const newErrors: { [key: string]: string } = {};
+    newErrors.firstName = validateRequired(formData.firstName, 'First name');
+    newErrors.lastName = validateRequired(formData.lastName, 'Last name');
+    newErrors.email = validateEmail(formData.email);
+    newErrors.phoneNumber = validatePhone(formData.phoneNumber);
+    newErrors.message = validateRequired(formData.message, 'Message');
+
+    // Check privacy checkbox
+    if (!privacyAccepted) {
+      newErrors.privacy = 'You must accept the privacy policy';
+    }
+
+    // Filter out empty errors
+    const filteredErrors = Object.fromEntries(
+      Object.entries(newErrors).filter(([_, value]) => value !== '')
+    );
+
+    setErrors(filteredErrors);
+
+    // If there are errors, don't submit
+    if (Object.keys(filteredErrors).length > 0) {
+      // Mark all fields as touched to show errors
+      setTouched({
+        firstName: true,
+        lastName: true,
+        email: true,
+        phoneNumber: true,
+        message: true,
+        privacy: true,
+      });
+      return;
+    }
+
     console.log('Form submitted:', formData);
     // Form submission logic will be added here
 
@@ -73,6 +168,9 @@ export default function ContactForm() {
       email: '',
       message: '',
     });
+    setPrivacyAccepted(false);
+    setErrors({});
+    setTouched({});
   };
 
   return (
@@ -117,7 +215,7 @@ export default function ContactForm() {
               <VStack spacing={2} align="stretch">
                 {/* First Name and Last Name */}
                 <HStack spacing={4} align="flex-start">
-                  <FormControl isRequired>
+                  <FormControl isRequired isInvalid={touched.firstName && !!errors.firstName}>
                     <FormLabel fontSize="xs" fontWeight="medium" mb={1.5} color="gray.700">
                       First Name
                     </FormLabel>
@@ -126,6 +224,7 @@ export default function ContactForm() {
                       placeholder="Enter first name"
                       value={formData.firstName}
                       onChange={handleChange}
+                      onBlur={() => handleBlur('firstName')}
                       borderRadius="md"
                       border="1px solid"
                       borderColor="gray.200"
@@ -136,9 +235,10 @@ export default function ContactForm() {
                         boxShadow: '0 0 0 1px var(--chakra-colors-blue-500)',
                       }}
                     />
+                    <FormErrorMessage fontSize="xs">{errors.firstName}</FormErrorMessage>
                   </FormControl>
 
-                  <FormControl isRequired>
+                  <FormControl isRequired isInvalid={touched.lastName && !!errors.lastName}>
                     <FormLabel fontSize="xs" fontWeight="medium" mb={1.5} color="gray.700">
                       Last Name
                     </FormLabel>
@@ -147,6 +247,7 @@ export default function ContactForm() {
                       placeholder="Enter last name"
                       value={formData.lastName}
                       onChange={handleChange}
+                      onBlur={() => handleBlur('lastName')}
                       borderRadius="md"
                       border="1px solid"
                       borderColor="gray.200"
@@ -157,11 +258,12 @@ export default function ContactForm() {
                         boxShadow: '0 0 0 1px var(--chakra-colors-blue-500)',
                       }}
                     />
+                    <FormErrorMessage fontSize="xs">{errors.lastName}</FormErrorMessage>
                   </FormControl>
                 </HStack>
 
                 {/* Email */}
-                <FormControl isRequired>
+                <FormControl isRequired isInvalid={touched.email && !!errors.email}>
                   <FormLabel fontSize="xs" fontWeight="medium" mb={1.5} color="gray.700">
                     Email
                   </FormLabel>
@@ -171,6 +273,7 @@ export default function ContactForm() {
                     placeholder="you@company.com"
                     value={formData.email}
                     onChange={handleChange}
+                    onBlur={() => handleBlur('email')}
                     borderRadius="md"
                     border="1px solid"
                     borderColor="gray.200"
@@ -181,10 +284,11 @@ export default function ContactForm() {
                       boxShadow: '0 0 0 1px var(--chakra-colors-blue-500)',
                     }}
                   />
+                  <FormErrorMessage fontSize="xs">{errors.email}</FormErrorMessage>
                 </FormControl>
 
                 {/* Phone Number */}
-                <FormControl isRequired>
+                <FormControl isRequired isInvalid={touched.phoneNumber && !!errors.phoneNumber}>
                   <FormLabel fontSize="xs" fontWeight="medium" mb={1.5} color="gray.700">
                     Phone number
                   </FormLabel>
@@ -242,12 +346,14 @@ export default function ContactForm() {
                         bg: 'white',
                         boxShadow: '0 0 0 1px var(--chakra-colors-blue-500)',
                       }}
+                      onBlur={() => handleBlur('phoneNumber')}
                     />
                   </InputGroup>
+                  <FormErrorMessage fontSize="xs">{errors.phoneNumber}</FormErrorMessage>
                 </FormControl>
 
                 {/* Message */}
-                <FormControl isRequired>
+                <FormControl isRequired isInvalid={touched.message && !!errors.message}>
                   <FormLabel fontSize="xs" fontWeight="medium" mb={1.5} color="gray.700">
                     Message
                   </FormLabel>
@@ -267,7 +373,9 @@ export default function ContactForm() {
                       boxShadow: '0 0 0 1px var(--chakra-colors-blue-500)',
                     }}
                     resize="none"
+                    onBlur={() => handleBlur('message')}
                   />
+                  <FormErrorMessage fontSize="xs">{errors.message}</FormErrorMessage>
                 </FormControl>
               </VStack>
             </Box>
@@ -291,6 +399,11 @@ export default function ContactForm() {
               We respect your privacy. Your information will only be used to respond to your
               inquiry.
             </Checkbox>
+            {touched.privacy && errors.privacy && (
+              <Text color="red.500" fontSize="xs" mt={1}>
+                {errors.privacy}
+              </Text>
+            )}
           </Flex>
           {/* Submit Button */}
           <Box display="flex" justifyContent={{ base: 'center', lg: 'flex-end' }} pt={2}>
