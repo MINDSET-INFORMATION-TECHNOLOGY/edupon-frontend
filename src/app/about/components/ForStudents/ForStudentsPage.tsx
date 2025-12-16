@@ -26,6 +26,7 @@ const ForStudentsPage = () => {
             h="333px"
             mt='-69px'
             src="/aboutUs/Group 1000003577.svg"
+            alt='Students Diagram'
             display={{base: 'none', md:'block'}}
           />
           
@@ -34,6 +35,7 @@ const ForStudentsPage = () => {
             h="333px"
             mt='-179px'
             src="/aboutUs/Group 1000003583.svg"
+            alt='Students Diagram'
             display={{base: 'block', md: 'none'}}
           />
         </Box>

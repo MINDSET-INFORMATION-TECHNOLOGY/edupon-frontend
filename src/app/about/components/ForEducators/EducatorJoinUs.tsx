@@ -1,8 +1,8 @@
 'use client';
 
-import { VStack, HStack, Box, Text, Image, Container, Heading, Button } from '@chakra-ui/react';
+import { Box, Text, Container, Heading, Button } from '@chakra-ui/react';
 
-const JoinUs = () => {
+const EducatorJoinUs = () => {
   return (
     <Box w="full" display="flex" justifyContent="center" py={8}>
       <Box
@@ -94,4 +94,4 @@ const JoinUs = () => {
   );
 };
 
-export default JoinUs;
+export default EducatorJoinUs;

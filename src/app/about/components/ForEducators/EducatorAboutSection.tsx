@@ -2,7 +2,7 @@
 
 import { VStack, HStack, Stack, Box, Text, Image } from '@chakra-ui/react';
 
-const AboutSection = () => {
+const EducatorAboutSection = () => {
   return (
     <Box mb={{ base: '2', md: '4' }} w="100%" mt={4}>
       <VStack w="100%">
@@ -22,6 +22,7 @@ const AboutSection = () => {
           <HStack>
             <Image
               src="/aboutUs/mingcute_building-5-line.svg"
+              alt='icon'
               w="16px"
             />
             <Text fontSize="14px" color="#1E3A8A">
@@ -34,7 +35,7 @@ const AboutSection = () => {
         <Text color="#101828" fontSize={{ base: '24px', md: '40px' }} fontWeight="semibold" textAlign='center'>
           Why we exist For{' '}
           <Text as="span" color="#1E3A8A">
-            Companies
+            Educators
           </Text>
         </Text>
 
@@ -62,7 +63,8 @@ const AboutSection = () => {
               p={2}
             >
               <Image
-                src="/aboutUs/Group 1000003570.svg"
+                src="/aboutUs/Group 1000003569.svg"
+                alt='Educators placement'
                 w="90%"
                 maxW="304px"
                 h="auto"
@@ -78,23 +80,24 @@ const AboutSection = () => {
                 <Text as="span" fontWeight="semibold">
                   EduPons
                 </Text>{' '}
-                was created to make your effort count beyond grades, beyond school walls.
+                began with one goal to empower educators to teach, guide, and inspire with impact.
               </Text>
 
               <Text color="#121212" fontSize={{ base: '16px', md: '18px' }} mt={2}>
-                We believe students deserve to be seen for their skills, projects, and creativity not just their test scores.
+                We know how challenging it is to keep students engaged, track progress meaningfully,{' '}
+                and connect classroom learning to real-world relevance.
               </Text>
 
               <Text mt={8} color="#121212" fontSize={{ base: '16px', md: '18px' }}>
-                We saw how hard it is to stand out, build connections, and find real opportunities while still learning. So we built{' '}
+                That’s why we built{' '}
                 <Text as="span" fontWeight="semibold">
                   EduPons
                 </Text>{' '}
-                a space where you can showcase what you do best, join exciting challenges, and get noticed by educators and companies that value your potential.
+                a collaborative platform where educators can design engaging experiences, monitor growth, and open new pathways for students.
               </Text>
 
               <Text mt={8} color="#121212" fontSize={{ base: '16px', md: '18px' }}>
-                Because when your learning connects with real-world opportunity, your journey truly begins.
+                We exist to make teaching more interactive, measurable, and rewarding for both you and your learners.
               </Text>
             </Box>
           </Stack>
@@ -105,4 +108,4 @@ const AboutSection = () => {
   );
 };
 
-export default AboutSection;
+export default EducatorAboutSection;

@@ -2,9 +2,9 @@
 
 import { VStack, Box, Image } from '@chakra-ui/react';
 import FAQs from '@/components/homeComponents/faq';
-import AboutSection from './AboutSection';
-import WhatWeDo from './WhatWeDo';
-import JoinUs from './JoinUs';
+import EducatorAboutSection from './EducatorAboutSection';
+import EducatorWhatWeDo from './EducatorWhatWeDo';
+import EducatorJoinUs from './EducatorJoinUs';
 
 const ForEducatorsPage = () => {
   return (
@@ -26,6 +26,7 @@ const ForEducatorsPage = () => {
             h="333px"
             mt='-69px'
             src="/aboutUs/Group 1000003578.svg"
+            alt='Educators diagram'
             display={{base: 'none', md:'block'}}
           />
           
@@ -34,21 +35,22 @@ const ForEducatorsPage = () => {
             h="333px"
             mt='-179px'
             src="/aboutUs/Group 1000003584.svg"
+            alt='Educators diagram'
             display={{base: 'block', md: 'none'}}
           />
         </Box>
 
-        <AboutSection />
+        <EducatorAboutSection />
 
         <Box bg='#F8FCFA' w='100%'>
-          <WhatWeDo />
+          <EducatorWhatWeDo />
         </Box>
 
         <Box bg='#F8FCFA' w='100%'>
           <FAQs />
         </Box>
 
-        <JoinUs />
+        <EducatorJoinUs />
 
       </VStack>
     </Box>

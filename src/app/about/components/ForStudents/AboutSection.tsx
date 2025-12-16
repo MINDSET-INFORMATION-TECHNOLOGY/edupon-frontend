@@ -22,6 +22,7 @@ const AboutSection = () => {
           <HStack>
             <Image
               src="/aboutUs/mingcute_building-5-line.svg"
+              alt='icon'
               w="16px"
             />
             <Text fontSize="14px" color="#1E3A8A">
@@ -63,6 +64,7 @@ const AboutSection = () => {
             >
               <Image
                 src="/aboutUs/Group 1000003568.svg"
+                alt='Students placement'
                 w="90%"
                 maxW="304px"
                 h="auto"

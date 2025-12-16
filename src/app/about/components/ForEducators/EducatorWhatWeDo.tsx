@@ -2,7 +2,7 @@
 
 import { VStack, HStack, Stack, Box, Text, Image } from '@chakra-ui/react';
 
-const WhatWeDo = () => {
+const EducatorWhatWeDo = () => {
   return (
     <Box mb={4} w="100%">
       <VStack w="100%">
@@ -176,4 +176,4 @@ const WhatWeDo = () => {
   );
 };
 
-export default WhatWeDo;
+export default EducatorWhatWeDo;

@@ -1,6 +1,6 @@
 'use client';
 
-import { VStack, HStack, Box, Text, Image, Container, Heading, Button } from '@chakra-ui/react';
+import { Box, Text, Container, Heading, Button } from '@chakra-ui/react';
 
 const JoinUs = () => {
   return (
