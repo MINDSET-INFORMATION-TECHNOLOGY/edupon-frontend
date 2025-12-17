@@ -1,6 +1,7 @@
 'use client';
 
 import { VStack, HStack, Stack, Box, Text, Image } from '@chakra-ui/react';
+import BadgeComponent from '@/components/badge';
 
 const WhatWeDo = () => {
   return (
@@ -20,26 +21,7 @@ const WhatWeDo = () => {
           <VStack w="100%">
 
             {/* Badge */}
-            <Box
-              w="45%"
-              maxW="125px"
-              py="6px"
-              borderWidth="1px"
-              rounded="30px"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <HStack>
-                <Image
-                  src="/aboutUs/mingcute_building-5-line.svg"
-                  w="16px"
-                />
-                <Text fontSize="14px" color="#1E3A8A">
-                  What we do
-                </Text>
-              </HStack>
-            </Box>
+            <BadgeComponent name="What We Do" />
 
             {/* Title */}
             <Text

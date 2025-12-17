@@ -36,15 +36,15 @@ export default function AboutClient() {
         w="100%" 
       >
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Box w={{ base: "90%", md: "448px" }} minH={{ base: "42px", md: "54px" }} borderWidth="1px" rounded="30px" p={1}>
-            <TabList display="flex" flexDirection="row" justifyContent="center" gap={{base:"16px", md:"20px"}} h="100%">
+          <Box w={{ base: "70%", md: "448px" }} minH={{ base: "42px", md: "54px" }} borderWidth="1px" rounded="30px" p={1}>
+            <TabList display="flex" flexDirection="row" justifyContent="center" gap={{base:"4px", md:"20px"}} h="100%">
               <Tab
                 w={{base:"100px", md:"125px"}}
                 h={{base:"32px", md:"44px"}}
                 px={{base:"11px", md:"9px"}}
                 py={{base:"8px", md:"10px"}}
                 fontSize={{base:"10px", md:"14px"}}
-                fontWeight={{base:"bold", md:"normal"}}
+                fontWeight={{base:"normal", md:"normal"}}
                 color="#505959"
                 borderRadius="full"
                 transition="background 0.2s ease, color 0.2s ease"
@@ -69,7 +69,7 @@ export default function AboutClient() {
                 px={{base:"11px", md:"9px"}}
                 py={{base:"8px", md:"10px"}}
                 fontSize={{base:"10px", md:"14px"}}
-                fontWeight={{base:"bold", md:"normal"}}
+                fontWeight={{base:"normal", md:"normal"}}
                 color="#505959"
                 borderRadius="full"
                 transition="background 0.2s ease, color 0.2s ease"
@@ -94,7 +94,7 @@ export default function AboutClient() {
                 px={{base:"11px", md:"9px"}}
                 py={{base:"8px", md:"10px"}}
                 fontSize={{base:"10px", md:"14px"}}
-                fontWeight={{base:"bold", md:"normal"}}
+                fontWeight={{base:"normal", md:"normal"}}
                 color="#505959"
                 borderRadius="full"
                 transition="background 0.2s ease, color 0.2s ease"

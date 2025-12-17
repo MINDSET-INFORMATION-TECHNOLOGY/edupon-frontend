@@ -1,6 +1,7 @@
 'use client';
 
 import { VStack, HStack, Stack, Box, Text, Image } from '@chakra-ui/react';
+import BadgeComponent from '@/components/badge';
 
 const EducatorAboutSection = () => {
   return (
@@ -8,28 +9,7 @@ const EducatorAboutSection = () => {
       <VStack w="100%">
 
         {/* Badge */}
-        <Box
-          w="40%"
-          maxW="88px"
-          h="auto"
-          py="6px"
-          borderWidth="1px"
-          rounded="30px"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <HStack>
-            <Image
-              src="/aboutUs/mingcute_building-5-line.svg"
-              alt='icon'
-              w="16px"
-            />
-            <Text fontSize="14px" color="#1E3A8A">
-              About
-            </Text>
-          </HStack>
-        </Box>
+        <BadgeComponent name="About" />
 
         {/* Title */}
         <Text color="#101828" fontSize={{ base: '24px', md: '40px' }} fontWeight="semibold" textAlign='center'>
