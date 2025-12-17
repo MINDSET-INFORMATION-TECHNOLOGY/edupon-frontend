@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 /**
  * Policies page - Server Component with SEO optimization
  * Displays Terms of Use and Privacy Policy with tab navigation
- * 
+ *
  * @route /policies
  * @query tab - Optional query param to select tab ('privacy' or 'terms')
  */

@@ -36,17 +36,16 @@ const EducatorJoinUs = () => {
             alignItems="center"
             justifyContent="center"
             gap={12}
-            minH='300px'
+            minH="300px"
           >
-
             <Box
-              flex='auto'
+              flex="auto"
               color="white"
-              textAlign='center'
-              maxW='800px'
+              textAlign="center"
+              maxW="800px"
               display="flex"
               flexDirection="column"
-              alignItems='center'
+              alignItems="center"
               justifyContent="center"
             >
               <Heading
@@ -59,8 +58,8 @@ const EducatorJoinUs = () => {
                 Our Vision for Educators
               </Heading>
               <Text fontSize={{ base: 'md', md: 'sm' }} lineHeight="1.8" mb={0}>
-                We see classrooms that go beyond textbooks, spaces where curiosity, creativity, and collaboration thrive.{' '} 
-                EduPons exists to help you bring that vision to life.
+                We see classrooms that go beyond textbooks, spaces where curiosity, creativity, and
+                collaboration thrive. EduPons exists to help you bring that vision to life.
               </Text>
 
               <Button
@@ -86,7 +85,6 @@ const EducatorJoinUs = () => {
                 Join EduPons as an Educator →
               </Button>
             </Box>
-
           </Box>
         </Container>
       </Box>

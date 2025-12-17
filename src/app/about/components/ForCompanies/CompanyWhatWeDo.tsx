@@ -7,7 +7,6 @@ const WhatWeDo = () => {
   return (
     <Box mb={4} w="100%">
       <VStack w="100%">
-
         {/* Wrapper */}
         <Box
           w="100%"
@@ -19,7 +18,6 @@ const WhatWeDo = () => {
           justifyContent="center"
         >
           <VStack w="100%">
-
             {/* Badge */}
             <BadgeComponent name="What We Do" />
 
@@ -53,11 +51,7 @@ const WhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Discover Emerging Talent
                   </Text>
@@ -77,11 +71,7 @@ const WhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Host or Sponsor Challenges
                   </Text>
@@ -110,18 +100,15 @@ const WhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Build Partnerships
                   </Text>
                 </HStack>
 
                 <Text color="#1A1C1E" fontSize="16px" mt={2} ml={1}>
-                  Collaborate with educators to design learning experiences that align with company goals.
+                  Collaborate with educators to design learning experiences that align with company
+                  goals.
                 </Text>
               </Box>
 
@@ -134,11 +121,7 @@ const WhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Enhance Your Employer Brand
                   </Text>
@@ -149,10 +132,8 @@ const WhatWeDo = () => {
                 </Text>
               </Box>
             </Stack>
-
           </VStack>
         </Box>
-
       </VStack>
     </Box>
   );

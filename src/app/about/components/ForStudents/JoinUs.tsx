@@ -36,17 +36,16 @@ const JoinUs = () => {
             alignItems="center"
             justifyContent="center"
             gap={12}
-            minH='300px'
+            minH="300px"
           >
-
             <Box
-              flex='auto'
+              flex="auto"
               color="white"
-              textAlign='center'
-              maxW='800px'
+              textAlign="center"
+              maxW="800px"
               display="flex"
               flexDirection="column"
-              alignItems='center'
+              alignItems="center"
               justifyContent="center"
             >
               <Heading
@@ -59,7 +58,8 @@ const JoinUs = () => {
                 Our Vision for Students
               </Heading>
               <Text fontSize={{ base: 'md', md: 'sm' }} lineHeight="1.8" mb={0}>
-                We see a world where every student’s effort is visible and valued  where your journey today shapes your opportunities tomorrow.
+                We see a world where every student’s effort is visible and valued where your journey
+                today shapes your opportunities tomorrow.
               </Text>
 
               <Button
@@ -85,7 +85,6 @@ const JoinUs = () => {
                 Join EduPons as a Student →
               </Button>
             </Box>
-
           </Box>
         </Container>
       </Box>

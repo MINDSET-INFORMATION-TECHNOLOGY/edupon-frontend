@@ -7,7 +7,6 @@ const EducatorWhatWeDo = () => {
   return (
     <Box mb={4} w="100%">
       <VStack w="100%">
-
         {/* Wrapper */}
         <Box
           w="100%"
@@ -19,7 +18,6 @@ const EducatorWhatWeDo = () => {
           justifyContent="center"
         >
           <VStack w="100%">
-
             {/* Badge */}
             <BadgeComponent name="What We Do" />
 
@@ -53,11 +51,7 @@ const EducatorWhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Design Challenges
                   </Text>
@@ -77,11 +71,7 @@ const EducatorWhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Track Progress
                   </Text>
@@ -110,11 +100,7 @@ const EducatorWhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Collaborate
                   </Text>
@@ -134,11 +120,7 @@ const EducatorWhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Motivate Students
                   </Text>
@@ -149,10 +131,8 @@ const EducatorWhatWeDo = () => {
                 </Text>
               </Box>
             </Stack>
-
           </VStack>
         </Box>
-
       </VStack>
     </Box>
   );
