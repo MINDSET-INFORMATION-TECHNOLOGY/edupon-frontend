@@ -6,16 +6,14 @@ import {
   AccordionPanel,
   Box,
   Container,
-  Icon,
   VStack,
   Text,
   Flex,
   Heading,
   Link,
-  Badge,
 } from '@chakra-ui/react';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
-import { MdBusiness } from 'react-icons/md';
+import BadgeComponent from '../badge';
 
 const faqs = [
   {
@@ -64,21 +62,7 @@ export default function FAQs() {
       <Container maxW="container.xl" py={20}>
         <VStack spacing={8} align="center" textAlign="center">
           {/* Head tag */}
-          <Badge
-            gap={1}
-            display="flex"
-            justifyContent={'center'}
-            alignItems={'center'}
-            bgColor={'white'}
-            border={'2px'}
-            px={3}
-            py={2}
-            borderColor={'brand.50'}
-            borderRadius={'full'}
-          >
-            <Icon as={MdBusiness} color={'brand.500'} boxSize={5} />
-            <Text color={'brand.500'}>FAQs</Text>
-          </Badge>
+          <BadgeComponent name="FAQs" />
 
           {/* Heading */}
           <Flex direction={'column'} gap={4} justifyContent={'center'} alignItems={'center'}>
