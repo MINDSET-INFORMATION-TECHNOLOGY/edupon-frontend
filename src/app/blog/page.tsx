@@ -3,6 +3,8 @@ import { Suspense } from 'react';
 import { getBlogPosts } from '@/lib/blog';
 import BlogContent from './components/BlogContent';
 import { Box, Spinner, Center } from '@chakra-ui/react';
+import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
 
 // SEO Metadata for blog page
 export const metadata: Metadata = {
@@ -89,7 +91,9 @@ export default async function BlogPage() {
             </Center>
           }
         >
+          <Navbar />
           <BlogContent initialPosts={posts} />
+          <Footer />
         </Suspense>
       </Box>
     </>
