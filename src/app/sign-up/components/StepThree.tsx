@@ -1,44 +1,100 @@
 'use client';
 
-import { VStack, Heading, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import {
+  VStack,
+  Heading,
+  Text,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  FormErrorMessage,
+} from '@chakra-ui/react';
+import { useState } from 'react';
 
-interface StepThreeProps {
+interface Props {
   nextStep: () => void;
-  prevStep?: () => void;
+  prevStep: () => void;
 }
 
-export default function StepThree({ nextStep, prevStep }: StepThreeProps) {
+export default function StepThree({ nextStep, prevStep }: Props) {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const [errors, setErrors] = useState<any>({});
+
+  const validate = () => {
+    let newErrors: any = {};
+
+    if (!form.name.trim()) newErrors.name = 'Full name is required';
+    if (!form.email.includes('@')) newErrors.email = 'Valid email required';
+    if (form.password.length < 6) newErrors.password = 'Minimum 6 characters';
+    if (form.password !== form.confirmPassword)
+      newErrors.confirmPassword = 'Passwords do not match';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleContinue = () => {
+    if (validate()) nextStep();
+  };
+
   return (
-    <VStack spacing={6} align="stretch">
-      <Heading size="lg">Finish Setting up your account</Heading>
+    <VStack spacing={4} align="stretch">
+      <Heading fontSize="20px">Create your Edupons account</Heading>
 
-      <FormControl>
-        <FormLabel>Industry</FormLabel>
-        <Input placeholder="Enter your industry" />
+      <Text fontSize="13px" color="gray.500">
+        Join a growing network of learners, creators, and doers.
+      </Text>
+
+      <FormControl isInvalid={errors.name}>
+        <FormLabel>Full name</FormLabel>
+        <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+        <FormErrorMessage>{errors.name}</FormErrorMessage>
       </FormControl>
 
-      <FormControl>
-        <FormLabel>Area of Interest</FormLabel>
-        <Input placeholder="Choose area of interest" />
+      <FormControl isInvalid={errors.email}>
+        <FormLabel>Email Address</FormLabel>
+        <Input
+          type="email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+        />
+        <FormErrorMessage>{errors.email}</FormErrorMessage>
       </FormControl>
 
-      <Button
-        h="56px"
-        bg="#2F4AA0"
-        color="white"
-        borderRadius="12px"
-        _hover={{ bg: '#253B80' }}
-        fontWeight="500"
-        onClick={nextStep} // ✅ call nextStep to move to Step 4
-      >
-        Create Account
+      <FormControl isInvalid={errors.password}>
+        <FormLabel>Password</FormLabel>
+        <Input
+          type="password"
+          value={form.password}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+        />
+        <FormErrorMessage>{errors.password}</FormErrorMessage>
+      </FormControl>
+
+      <FormControl isInvalid={errors.confirmPassword}>
+        <FormLabel>Confirm Password</FormLabel>
+        <Input
+          type="password"
+          value={form.confirmPassword}
+          onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
+        />
+        <FormErrorMessage>{errors.confirmPassword}</FormErrorMessage>
+      </FormControl>
+
+      <Button bg="#2F4AA0" color="white" onClick={handleContinue}>
+        Continue
       </Button>
 
-      {prevStep && (
-        <Button variant="ghost" onClick={prevStep}>
-          Back
-        </Button>
-      )}
+      <Button variant="ghost" size="sm" onClick={prevStep}>
+        Back
+      </Button>
     </VStack>
   );
 }

@@ -8,6 +8,7 @@ import StepTwo from './StepTwo';
 import StepThree from './StepThree';
 import StepFour from './StepFour';
 import StepFive from './StepFive';
+import StepSix from './StepSix';
 
 export default function SignUpClient() {
   const [step, setStep] = useState(1);
@@ -27,7 +28,7 @@ export default function SignUpClient() {
 
   // Handle verification success (step 4)
   const handleVerificationSuccess = () => {
-    setStep(5);
+    setStep(6);
 
     // Redirect after 2 seconds
     setTimeout(() => {
@@ -40,8 +41,9 @@ export default function SignUpClient() {
       {step === 1 && <StepOne nextStep={nextStep} />}
       {step === 2 && <StepTwo nextStep={nextStep} prevStep={prevStep} />}
       {step === 3 && <StepThree nextStep={nextStep} prevStep={prevStep} />}
-      {step === 4 && <StepFour prevStep={prevStep} onSuccess={handleVerificationSuccess} />}
-      {step === 5 && <StepFive />}
+      {step === 4 && <StepFour nextStep={nextStep} prevStep={prevStep} />}
+      {step === 5 && <StepFive nextStep={nextStep} prevStep={prevStep} />}
+      {step === 6 && <StepSix />}
     </AuthLayout>
   );
 }

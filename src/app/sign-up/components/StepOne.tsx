@@ -15,18 +15,23 @@ export default function StepOne({ nextStep }: StepOneProps) {
   };
 
   return (
-    <VStack spacing={8} align="stretch">
-      <VStack spacing={2} align="flex-start">
-        <Heading fontSize="28px" fontWeight="700" color="#1F2937">
+    <VStack spacing={6} align="stretch">
+      {' '}
+      // reduced spacing from 8
+      <VStack spacing={1} align="flex-start">
+        {' '}
+        // reduced from 2
+        <Heading fontSize="20px" fontWeight="600" color="#1F2937">
           Welcome to EduPons
         </Heading>
-        <Text fontSize="15px" color="#6B7280">
+        <Text fontSize="12px" color="#6B7280">
           Before proceeding to register, select the profile that best fits you.
         </Text>
       </VStack>
-
       <RadioGroup value={value} onChange={setValue}>
-        <VStack spacing={4} align="stretch">
+        <VStack spacing={3} align="stretch">
+          {' '}
+          // reduced spacing from 4
           {[
             { label: 'A Student', value: 'student' },
             { label: 'An Educator', value: 'educator' },
@@ -35,9 +40,9 @@ export default function StepOne({ nextStep }: StepOneProps) {
             <Box
               key={item.value}
               border="1px solid #E5E7EB"
-              borderRadius="12px"
-              px={4}
-              py={4}
+              borderRadius="10px"
+              px={2}
+              py={2}
               bg="white"
             >
               <Radio value={item.value} colorScheme="blue">
@@ -47,12 +52,11 @@ export default function StepOne({ nextStep }: StepOneProps) {
           ))}
         </VStack>
       </RadioGroup>
-
       <Button
-        h="56px"
+        h="40px" // smaller than 56px
         bg="#2F4AA0"
         color="white"
-        borderRadius="12px"
+        borderRadius="10px"
         _hover={{ bg: '#253B80' }}
         fontWeight="500"
         onClick={handleContinue}
