@@ -8,40 +8,52 @@ interface Props {
 }
 
 export default function StepTwo({ nextStep, prevStep }: Props) {
+  const handleOAuth = (provider: string) => {
+    console.log(`Continue with ${provider}`);
+    // TODO: Add OAuth logic here later
+  };
+
   return (
-    <VStack spacing={4} align="stretch">
-      <Heading fontSize="20px">
+    <VStack spacing={3} align="stretch">
+      {/* Heading */}
+      <Heading fontSize="18px" fontWeight="600">
         Welcome to EduPons <span style={{ color: '#2F4AA0' }}>Educator</span>
       </Heading>
 
-      <Text fontSize="13px" color="gray.500">
-        The all-in-one ecosystem where talents connect with educators and companies to create
-        opportunities together.
+      {/* Description */}
+      <Text fontSize="12px" color="gray.500">
+        The all-in-one ecosystem where talents connect with educators and companies.
       </Text>
 
-      <Button variant="outline" h="42px">
+      {/* Social Buttons */}
+      <Button variant="outline" h="38px" fontSize="13px" onClick={() => handleOAuth('google')}>
         Continue with Google
       </Button>
 
-      <Button variant="outline" h="42px">
+      <Button variant="outline" h="38px" fontSize="13px" onClick={() => handleOAuth('linkedin')}>
         Continue with LinkedIn
       </Button>
 
-      <Button variant="outline" h="42px">
-        Continue with Apple
-      </Button>
+      <Divider my={2} />
 
-      <Divider />
-
-      <Button h="44px" bg="#2F4AA0" color="white" onClick={nextStep}>
+      {/* Email Button (only this moves to next step) */}
+      <Button
+        h="40px"
+        bg="#2F4AA0"
+        color="white"
+        fontSize="13px"
+        _hover={{ bg: '#253B80' }}
+        onClick={nextStep}
+      >
         Continue with email
       </Button>
 
-      <Text fontSize="11px" color="gray.500" textAlign="center">
+      {/* Terms */}
+      <Text fontSize="10px" color="gray.500" textAlign="center">
         By continuing, you agree to our Terms of Use and Privacy Policy.
       </Text>
 
-      <Button variant="ghost" size="sm" onClick={prevStep}>
+      <Button variant="ghost" size="xs" onClick={prevStep}>
         Back
       </Button>
     </VStack>

@@ -20,13 +20,13 @@ export default function AuthLayout({ children, imageSrc, step = 1 }: AuthLayoutP
       <Flex
         w={{ base: '100%', md: '50%' }}
         direction="column"
-        bg="#F5F6F8"
-        px={{ base: 6, md: 12 }}
-        py={6}
+        bg="white"
+        px={{ base: 6, md: 10 }}
+        py={5}
       >
         {/* Header */}
         <HStack justify="space-between" mb={6}>
-          <Image src="/logo.svg" alt="EduPons" h="32px" />
+          <Image src="/eduponsLogo.svg" alt="EduPons" h="32px" />
 
           <Text fontSize="13px">
             Already on EduPons?{' '}
@@ -54,10 +54,10 @@ export default function AuthLayout({ children, imageSrc, step = 1 }: AuthLayoutP
         <Flex flex="1" align="center" justify="center">
           <Box
             w="full"
-            maxW="360px" // reduced from 400px
+            maxW="300px" // reduced from 400px
             bg="white"
             borderRadius="12px" // slightly smaller radius
-            border="1px solid #E6E8EC"
+            border="0px solid #E6E8EC"
             p={4} // reduced padding from 6
           >
             {children}

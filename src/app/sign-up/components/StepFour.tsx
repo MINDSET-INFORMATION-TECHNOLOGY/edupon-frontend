@@ -20,40 +20,84 @@ interface Props {
 export default function StepFour({ nextStep, prevStep }: Props) {
   const [institution, setInstitution] = useState('');
   const [interest, setInterest] = useState('');
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
 
   const handleContinue = () => {
     if (!interest.trim()) {
-      setError(true);
+      setError('Area of interest is required');
       return;
     }
+
+    setError('');
     nextStep();
   };
 
+  const handleInterestChange = (value: string) => {
+    setInterest(value);
+
+    // Clear error automatically once user types something valid
+    if (value.trim()) {
+      setError('');
+    }
+  };
+
   return (
-    <VStack spacing={4} align="stretch">
-      <Heading fontSize="20px">Finish Setting up your account</Heading>
+    <VStack spacing={3} align="stretch">
+      {/* Header */}
+      <VStack spacing={1} align="flex-start">
+        <Heading fontSize="18px" fontWeight="600" color="#111827">
+          Finish setting up your account
+        </Heading>
 
-      <Text fontSize="13px" color="gray.500">
-        In order to get you in front of potential clients, please provide your details.
-      </Text>
+        <Text fontSize="11px" color="#6B7280">
+          Provide a few more details to personalize your experience.
+        </Text>
+      </VStack>
 
+      {/* Institution (Optional) */}
       <FormControl>
-        <FormLabel>Institution (optional)</FormLabel>
-        <Input value={institution} onChange={(e) => setInstitution(e.target.value)} />
+        <FormLabel fontSize="12px" mb={1}>
+          Institution (optional)
+        </FormLabel>
+        <Input
+          h="38px"
+          fontSize="13px"
+          value={institution}
+          onChange={(e) => setInstitution(e.target.value)}
+        />
       </FormControl>
 
-      <FormControl isInvalid={error}>
-        <FormLabel>Area of Interest</FormLabel>
-        <Input value={interest} onChange={(e) => setInterest(e.target.value)} />
-        <FormErrorMessage>Area of interest is required</FormErrorMessage>
+      {/* Area of Interest */}
+      <FormControl isInvalid={!!error}>
+        <FormLabel fontSize="12px" mb={1}>
+          Area of Interest
+        </FormLabel>
+        <Input
+          h="38px"
+          fontSize="13px"
+          value={interest}
+          onChange={(e) => handleInterestChange(e.target.value)}
+        />
+        <FormErrorMessage fontSize="11px">{error}</FormErrorMessage>
       </FormControl>
 
-      <Button bg="#2F4AA0" color="white" onClick={handleContinue}>
+      {/* Continue */}
+      <Button
+        h="38px"
+        bg="#2F4AA0"
+        color="white"
+        borderRadius="10px"
+        fontSize="13px"
+        fontWeight="500"
+        _hover={{ bg: '#253B80' }}
+        mt={1}
+        onClick={handleContinue}
+      >
         Continue
       </Button>
 
-      <Button variant="ghost" size="sm" onClick={prevStep}>
+      {/* Back */}
+      <Button variant="ghost" size="sm" fontSize="12px" onClick={prevStep}>
         Back
       </Button>
     </VStack>

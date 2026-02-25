@@ -15,23 +15,21 @@ export default function StepOne({ nextStep }: StepOneProps) {
   };
 
   return (
-    <VStack spacing={6} align="stretch">
-      {' '}
-      // reduced spacing from 8
+    <VStack spacing={5} align="stretch">
+      {/* Header */}
       <VStack spacing={1} align="flex-start">
-        {' '}
-        // reduced from 2
-        <Heading fontSize="20px" fontWeight="600" color="#1F2937">
+        <Heading fontSize="18px" fontWeight="600" color="#111827">
           Welcome to EduPons
         </Heading>
-        <Text fontSize="12px" color="#6B7280">
-          Before proceeding to register, select the profile that best fits you.
+
+        <Text fontSize="11px" color="#6B7280">
+          Select the profile that best fits you.
         </Text>
       </VStack>
+
+      {/* Role Selection */}
       <RadioGroup value={value} onChange={setValue}>
-        <VStack spacing={3} align="stretch">
-          {' '}
-          // reduced spacing from 4
+        <VStack spacing={2} align="stretch">
           {[
             { label: 'A Student', value: 'student' },
             { label: 'An Educator', value: 'educator' },
@@ -41,24 +39,29 @@ export default function StepOne({ nextStep }: StepOneProps) {
               key={item.value}
               border="1px solid #E5E7EB"
               borderRadius="10px"
-              px={2}
+              px={3}
               py={2}
               bg="white"
             >
-              <Radio value={item.value} colorScheme="blue">
-                {item.label}
+              <Radio value={item.value} colorScheme="blue" size="sm">
+                <Text fontSize="13px" fontWeight="500">
+                  {item.label}
+                </Text>
               </Radio>
             </Box>
           ))}
         </VStack>
       </RadioGroup>
+
+      {/* Continue Button */}
       <Button
-        h="40px" // smaller than 56px
+        h="38px"
         bg="#2F4AA0"
         color="white"
         borderRadius="10px"
-        _hover={{ bg: '#253B80' }}
+        fontSize="13px"
         fontWeight="500"
+        _hover={{ bg: '#253B80' }}
         onClick={handleContinue}
       >
         Continue
