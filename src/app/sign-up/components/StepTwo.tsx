@@ -10,7 +10,6 @@ interface Props {
 export default function StepTwo({ nextStep, prevStep }: Props) {
   const handleOAuth = (provider: string) => {
     console.log(`Continue with ${provider}`);
-    // TODO: Add OAuth logic here later
   };
 
   return (

@@ -8,35 +8,62 @@ interface AuthLayoutProps {
   children: ReactNode;
   imageSrc: string;
   step?: number;
+  totalSteps?: number;
+  imagePosition?: 'left' | 'right';
+  showProgress?: boolean;
+  type?: 'signup' | 'login';
 }
 
-export default function AuthLayout({ children, imageSrc, step = 1 }: AuthLayoutProps) {
-  const totalSteps = 6;
+export default function AuthLayout({
+  children,
+  imageSrc,
+  step = 1,
+  totalSteps = 6,
+  imagePosition = 'right',
+  showProgress = true,
+  type = 'signup',
+}: AuthLayoutProps) {
   const progressValue = (step / totalSteps) * 100;
 
-  return (
-    <Flex h="100vh" overflow="hidden">
-      {/* LEFT HALF */}
-      <Flex
-        w={{ base: '100%', md: '50%' }}
-        direction="column"
-        bg="white"
-        px={{ base: 6, md: 10 }}
-        py={5}
-      >
-        {/* Header */}
-        <HStack justify="space-between" mb={6}>
-          <Image src="/eduponsLogo.svg" alt="EduPons" h="32px" />
+  const imageSection = (
+    <Box w="50%" display={{ base: 'none', md: 'block' }} h="100vh">
+      <Image src={imageSrc} alt="Auth" objectFit="cover" w="100%" h="100%" />
+    </Box>
+  );
 
-          <Text fontSize="13px">
-            Already on EduPons?{' '}
-            <Link as={NextLink} href="/login" color="#2F4AA0" fontWeight="500">
-              Log in
-            </Link>
-          </Text>
-        </HStack>
+  const formSection = (
+    <Flex
+      w={{ base: '100%', md: '50%' }}
+      direction="column"
+      bg="white"
+      px={{ base: 6, md: 10 }}
+      py={5}
+    >
+      {/* Header */}
+      <HStack justify="space-between" mb={6}>
+        <Image src="/eduponsLogo.svg" alt="EduPons" h="32px" />
 
-        {/* Progress */}
+        <Text fontSize="13px">
+          {type === 'signup' ? (
+            <>
+              Already on EduPons?{' '}
+              <Link as={NextLink} href="/login" color="#2F4AA0" fontWeight="500">
+                Log in
+              </Link>
+            </>
+          ) : (
+            <>
+              New to EduPons?{' '}
+              <Link as={NextLink} href="/sign-up" color="#2F4AA0" fontWeight="500">
+                Sign up
+              </Link>
+            </>
+          )}
+        </Text>
+      </HStack>
+
+      {/* Progress */}
+      {showProgress && (
         <Progress
           value={progressValue}
           size="xs"
@@ -49,26 +76,22 @@ export default function AuthLayout({ children, imageSrc, step = 1 }: AuthLayoutP
             },
           }}
         />
+      )}
 
-        {/* Centered Card */}
-        <Flex flex="1" align="center" justify="center">
-          <Box
-            w="full"
-            maxW="300px" // reduced from 400px
-            bg="white"
-            borderRadius="12px" // slightly smaller radius
-            border="0px solid #E6E8EC"
-            p={4} // reduced padding from 6
-          >
-            {children}
-          </Box>
-        </Flex>
+      {/* Centered Card */}
+      <Flex flex="1" align="center" justify="center">
+        <Box w="full" maxW="300px" bg="white" borderRadius="12px" p={4}>
+          {children}
+        </Box>
       </Flex>
+    </Flex>
+  );
 
-      {/* RIGHT HALF */}
-      <Box w="50%" display={{ base: 'none', md: 'block' }} h="100vh">
-        <Image src={imageSrc} alt="Auth" objectFit="cover" w="100%" h="100%" />
-      </Box>
+  return (
+    <Flex h="100vh" overflow="hidden">
+      {imagePosition === 'left' && imageSection}
+      {formSection}
+      {imagePosition === 'right' && imageSection}
     </Flex>
   );
 }

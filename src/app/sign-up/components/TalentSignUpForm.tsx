@@ -21,7 +21,6 @@ export default function TalentSignUpForm() {
     e.preventDefault();
     setLoading(true);
 
-    // TODO: connect to your backend API
     setTimeout(() => {
       setLoading(false);
     }, 1500);

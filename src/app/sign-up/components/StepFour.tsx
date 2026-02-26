@@ -35,7 +35,6 @@ export default function StepFour({ nextStep, prevStep }: Props) {
   const handleInterestChange = (value: string) => {
     setInterest(value);
 
-    // Clear error automatically once user types something valid
     if (value.trim()) {
       setError('');
     }
@@ -54,7 +53,7 @@ export default function StepFour({ nextStep, prevStep }: Props) {
         </Text>
       </VStack>
 
-      {/* Institution (Optional) */}
+      {/* Institution*/}
       <FormControl>
         <FormLabel fontSize="12px" mb={1}>
           Institution (optional)

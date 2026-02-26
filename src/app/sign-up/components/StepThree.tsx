@@ -38,19 +38,19 @@ export default function StepThree({ nextStep, prevStep }: Props) {
       newErrors.email = 'Enter a valid email';
     }
 
-    // Password validation
     if (!form.password) {
       newErrors.password = 'Password is required';
     } else if (form.password.length < 6) {
       newErrors.password = 'Minimum 6 characters';
     }
 
-    // Confirm password validation
     if (!form.confirmPassword) {
       newErrors.confirmPassword = 'Please confirm your password';
-    }
-    // Only check mismatch if password passed validation
-    else if (form.password && form.password.length >= 6 && form.password !== form.confirmPassword) {
+    } else if (
+      form.password &&
+      form.password.length >= 6 &&
+      form.password !== form.confirmPassword
+    ) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
 
