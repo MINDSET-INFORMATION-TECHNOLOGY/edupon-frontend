@@ -5,37 +5,48 @@ import { VStack, Heading, Text, Button, Divider } from '@chakra-ui/react';
 interface Props {
   nextStep: () => void;
   prevStep: () => void;
+  role: string;
 }
 
-export default function StepTwo({ nextStep, prevStep }: Props) {
+export default function StepTwo({ nextStep, prevStep, role }: Props) {
   const handleOAuth = (provider: string) => {
     console.log(`Continue with ${provider}`);
   };
 
   return (
     <VStack spacing={3} align="stretch">
-      {/* Heading */}
       <Heading fontSize="18px" fontWeight="600">
-        Welcome to EduPons <span style={{ color: '#2F4AA0' }}>Educator</span>
+        Welcome to EduPons{' '}
+        {role === 'educator' ? (
+          <span style={{ color: '#2F4AA0' }}>Educator</span>
+        ) : role === 'student' ? (
+          <span style={{ color: '#2F4AA0' }}>Talent</span>
+        ) : null}
       </Heading>
 
-      {/* Description */}
       <Text fontSize="12px" color="gray.500">
         The all-in-one ecosystem where talents connect with educators and companies.
       </Text>
 
-      {/* Social Buttons */}
-      <Button variant="outline" h="38px" fontSize="13px" onClick={() => handleOAuth('google')}>
-        Continue with Google
-      </Button>
+      {/* Only show social buttons for talent & educator */}
+      {role !== 'company' && (
+        <>
+          <Button variant="outline" h="38px" fontSize="13px" onClick={() => handleOAuth('google')}>
+            Continue with Google
+          </Button>
+          <Button
+            variant="outline"
+            h="38px"
+            fontSize="13px"
+            onClick={() => handleOAuth('linkedin')}
+          >
+            Continue with LinkedIn
+          </Button>
+          <Divider my={2} />
+        </>
+      )}
 
-      <Button variant="outline" h="38px" fontSize="13px" onClick={() => handleOAuth('linkedin')}>
-        Continue with LinkedIn
-      </Button>
-
-      <Divider my={2} />
-
-      {/* Email Button (only this moves to next step) */}
+      {/* Email always */}
       <Button
         h="40px"
         bg="#2F4AA0"
@@ -47,7 +58,6 @@ export default function StepTwo({ nextStep, prevStep }: Props) {
         Continue with email
       </Button>
 
-      {/* Terms */}
       <Text fontSize="10px" color="gray.500" textAlign="center">
         By continuing, you agree to our Terms of Use and Privacy Policy.
       </Text>

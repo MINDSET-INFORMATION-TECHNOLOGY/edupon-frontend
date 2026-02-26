@@ -1,16 +1,23 @@
 'use client';
 
 import { VStack, Heading, Text, Button, Radio, RadioGroup, Box } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 
+// ✅ Updated Props to include setRole
 interface StepOneProps {
   nextStep: () => void;
+  setRole: Dispatch<SetStateAction<string>>;
 }
 
-export default function StepOne({ nextStep }: StepOneProps) {
-  const [value, setValue] = useState('student');
+export default function StepOne({ nextStep, setRole }: StepOneProps) {
+  const [value, setValue] = useState('');
 
   const handleContinue = () => {
+    if (!value) {
+      alert('Please select a role'); // simple validation
+      return;
+    }
+    setRole(value); // save selected role
     nextStep();
   };
 
@@ -21,7 +28,6 @@ export default function StepOne({ nextStep }: StepOneProps) {
         <Heading fontSize="18px" fontWeight="600" color="#111827">
           Welcome to EduPons
         </Heading>
-
         <Text fontSize="11px" color="#6B7280">
           Select the profile that best fits you.
         </Text>

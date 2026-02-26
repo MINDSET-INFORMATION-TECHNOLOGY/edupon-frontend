@@ -15,35 +15,32 @@ import { useState } from 'react';
 interface Props {
   nextStep: () => void;
   prevStep: () => void;
+  role: string; // <-- new prop
 }
 
-export default function StepThree({ nextStep, prevStep }: Props) {
+export default function StepThree({ nextStep, prevStep, role }: Props) {
   const [form, setForm] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
-
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
 
     if (!form.name.trim()) {
-      newErrors.name = 'Full name is required';
+      newErrors.name = role === 'company' ? 'Company name is required' : 'Full name is required';
     }
-
     if (!/^\S+@\S+\.\S+$/.test(form.email)) {
       newErrors.email = 'Enter a valid email';
     }
-
     if (!form.password) {
       newErrors.password = 'Password is required';
     } else if (form.password.length < 6) {
       newErrors.password = 'Minimum 6 characters';
     }
-
     if (!form.confirmPassword) {
       newErrors.confirmPassword = 'Please confirm your password';
     } else if (
@@ -64,25 +61,26 @@ export default function StepThree({ nextStep, prevStep }: Props) {
 
   return (
     <VStack spacing={3} align="stretch">
-      {/* Header */}
       <VStack spacing={1} align="flex-start">
         <Heading fontSize="18px" fontWeight="600" color="#111827">
-          Create your EduPons account
+          {role === 'company' ? 'Create your company account' : 'Create your EduPons account'}
         </Heading>
-
         <Text fontSize="11px" color="#6B7280">
-          Join a growing network of learners.
+          {role === 'company'
+            ? 'Join as a company and connect with talents and educators.'
+            : 'Join a growing network of learners.'}
         </Text>
       </VStack>
 
-      {/* Full Name */}
+      {/* Name / Company Name */}
       <FormControl isInvalid={!!errors.name}>
         <FormLabel fontSize="12px" mb={1}>
-          Full name
+          {role === 'company' ? 'Company Name' : 'Full Name'}
         </FormLabel>
         <Input
           h="38px"
           fontSize="13px"
+          placeholder={role === 'company' ? 'Enter your company name' : 'Enter your full name'}
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
@@ -92,12 +90,13 @@ export default function StepThree({ nextStep, prevStep }: Props) {
       {/* Email */}
       <FormControl isInvalid={!!errors.email}>
         <FormLabel fontSize="12px" mb={1}>
-          Email Address
+          {role === 'company' ? 'Company Email Address' : 'Email Address'}
         </FormLabel>
         <Input
           h="38px"
           fontSize="13px"
           type="email"
+          placeholder={role === 'company' ? 'Enter your company email' : 'Enter your email'}
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
@@ -113,6 +112,7 @@ export default function StepThree({ nextStep, prevStep }: Props) {
           h="38px"
           fontSize="13px"
           type="password"
+          placeholder="Enter your password"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
@@ -128,13 +128,13 @@ export default function StepThree({ nextStep, prevStep }: Props) {
           h="38px"
           fontSize="13px"
           type="password"
+          placeholder="Confirm your password"
           value={form.confirmPassword}
           onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
         />
         <FormErrorMessage fontSize="11px">{errors.confirmPassword}</FormErrorMessage>
       </FormControl>
 
-      {/* Continue */}
       <Button
         h="38px"
         bg="#2F4AA0"
@@ -149,7 +149,6 @@ export default function StepThree({ nextStep, prevStep }: Props) {
         Continue
       </Button>
 
-      {/* Back */}
       <Button variant="ghost" size="sm" fontSize="12px" onClick={prevStep}>
         Back
       </Button>
