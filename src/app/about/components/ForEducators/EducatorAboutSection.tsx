@@ -1,54 +1,36 @@
 'use client';
 
-import { VStack, HStack, Stack, Box, Text, Image } from '@chakra-ui/react';
+import { VStack, Stack, Box, Text, Image } from '@chakra-ui/react';
+import BadgeComponent from '@/components/badge';
 
 const EducatorAboutSection = () => {
   return (
     <Box mb={{ base: '2', md: '4' }} w="100%" mt={4}>
       <VStack w="100%">
-
         {/* Badge */}
-        <Box
-          w="40%"
-          maxW="88px"
-          h="auto"
-          py="6px"
-          borderWidth="1px"
-          rounded="30px"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <HStack>
-            <Image
-              src="/aboutUs/mingcute_building-5-line.svg"
-              alt='icon'
-              w="16px"
-            />
-            <Text fontSize="14px" color="#1E3A8A">
-              About
-            </Text>
-          </HStack>
-        </Box>
+        <BadgeComponent name="About" />
 
         {/* Title */}
-        <Text color="#101828" fontSize={{ base: '24px', md: '40px' }} fontWeight="semibold" textAlign='center'>
+        <Text
+          color="#101828"
+          fontSize={{ base: '24px', md: '40px' }}
+          fontWeight="semibold"
+          textAlign="center"
+        >
           Why we exist For{' '}
           <Text as="span" color="#1E3A8A">
             Educators
           </Text>
         </Text>
 
-        <Text color="#344054">
-          Our thought process at EduPons
-        </Text>
+        <Text color="#344054">Our thought process at EduPons</Text>
 
         {/* Main content wrapper */}
         <Box w="100%" maxW="1240px" mt={8}>
           <Stack
             direction={{ base: 'column-reverse', xl: 'row' }}
             alignItems="center"
-            spacing={{base:"8%", md:"2%"}}
+            spacing={{ base: '8%', md: '2%' }}
           >
             {/* Image container */}
             <Box
@@ -64,7 +46,7 @@ const EducatorAboutSection = () => {
             >
               <Image
                 src="/aboutUs/Group 1000003569.svg"
-                alt='Educators placement'
+                alt="Educators placement"
                 w="90%"
                 maxW="304px"
                 h="auto"
@@ -72,10 +54,7 @@ const EducatorAboutSection = () => {
             </Box>
 
             {/* Text content */}
-            <Box
-              w={{ base: '90%', md: '90%' }}
-              textAlign='justify'
-            >
+            <Box w={{ base: '90%', md: '90%' }} textAlign="justify">
               <Text color="#121212" fontSize={{ base: '16px', md: '18px' }}>
                 <Text as="span" fontWeight="semibold">
                   EduPons
@@ -93,16 +72,17 @@ const EducatorAboutSection = () => {
                 <Text as="span" fontWeight="semibold">
                   EduPons
                 </Text>{' '}
-                a collaborative platform where educators can design engaging experiences, monitor growth, and open new pathways for students.
+                a collaborative platform where educators can design engaging experiences, monitor
+                growth, and open new pathways for students.
               </Text>
 
               <Text mt={8} color="#121212" fontSize={{ base: '16px', md: '18px' }}>
-                We exist to make teaching more interactive, measurable, and rewarding for both you and your learners.
+                We exist to make teaching more interactive, measurable, and rewarding for both you
+                and your learners.
               </Text>
             </Box>
           </Stack>
         </Box>
-
       </VStack>
     </Box>
   );

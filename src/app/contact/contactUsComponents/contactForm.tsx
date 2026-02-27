@@ -5,14 +5,12 @@ import {
   Container,
   FormControl,
   FormLabel,
-  Icon,
   Input,
   Textarea,
   VStack,
   Text,
   Flex,
   Heading,
-  Badge,
   HStack,
   Select,
   InputGroup,
@@ -20,7 +18,7 @@ import {
   Checkbox,
   FormErrorMessage,
 } from '@chakra-ui/react';
-import { MdBusiness } from 'react-icons/md';
+import BadgeComponent from '@/components/badge';
 import { useState } from 'react';
 
 export default function ContactForm() {
@@ -186,21 +184,7 @@ export default function ContactForm() {
       <Container maxW="container.xl" py={20}>
         <VStack spacing={8} align="center" textAlign="center">
           {/* Head tag */}
-          <Badge
-            gap={1}
-            display="flex"
-            justifyContent={'center'}
-            alignItems={'center'}
-            bgColor={'white'}
-            border={'2px'}
-            px={3}
-            py={2}
-            borderColor={'brand.50'}
-            borderRadius={'full'}
-          >
-            <Icon as={MdBusiness} color={'brand.500'} boxSize={5} />
-            <Text color={'brand.500'}>Get in Touch</Text>
-          </Badge>
+          <BadgeComponent name="Get In Touch" />
 
           {/* Heading */}
           <Flex direction={'column'} gap={4} justifyContent={'center'} alignItems={'center'}>

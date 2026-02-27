@@ -10,9 +10,10 @@ export const staticBlogPosts: BlogPost[] = [
     title: 'Transforming Business Performance with Cloud Architecture',
     slug: 'transforming-business-cloud-architecture',
     excerpt:
-      'Discover how an optimized cloud architecture can boost scalability, security, and cost-efficiency. Empower your business to thrive in today\'s fast-evolving digital landscape.',
+      "Discover how an optimized cloud architecture can boost scalability, security, and cost-efficiency. Empower your business to thrive in today's fast-evolving digital landscape.",
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-1',
       name: 'Sarah Johnson',
@@ -30,7 +31,8 @@ export const staticBlogPosts: BlogPost[] = [
     excerpt:
       'Learn how EduPons platform is creating meaningful connections between students, educators, and companies to build career-ready professionals.',
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-2',
       name: 'Michael Chen',
@@ -48,7 +50,8 @@ export const staticBlogPosts: BlogPost[] = [
     excerpt:
       'Explore how modern educational platforms are leveraging challenges and portfolio building to help students showcase their skills to potential employers.',
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-1',
       name: 'Sarah Johnson',
@@ -66,7 +69,8 @@ export const staticBlogPosts: BlogPost[] = [
     excerpt:
       'Discover the innovative tools and resources available to educators to enhance student engagement and track learning progress effectively.',
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-3',
       name: 'Dr. Amina Okafor',
@@ -84,7 +88,8 @@ export const staticBlogPosts: BlogPost[] = [
     excerpt:
       'Read inspiring success stories of students who transformed their learning journey into successful careers through the EduPons platform.',
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-2',
       name: 'Michael Chen',
@@ -102,7 +107,8 @@ export const staticBlogPosts: BlogPost[] = [
     excerpt:
       'Learn essential strategies for creating a compelling portfolio that showcases your skills and attracts potential employers and internship opportunities.',
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-3',
       name: 'Dr. Amina Okafor',
@@ -120,7 +126,8 @@ export const staticBlogPosts: BlogPost[] = [
     excerpt:
       'Understand how forward-thinking companies are partnering with educational platforms to identify and nurture the next generation of talent.',
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-1',
       name: 'Sarah Johnson',
@@ -136,9 +143,10 @@ export const staticBlogPosts: BlogPost[] = [
     title: 'Navigating Internships: A Guide for Students in Nigeria',
     slug: 'navigating-internships-guide-nigeria',
     excerpt:
-      'A comprehensive guide to finding, applying for, and succeeding in internships within Nigeria\'s growing tech and business sectors.',
+      "A comprehensive guide to finding, applying for, and succeeding in internships within Nigeria's growing tech and business sectors.",
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-2',
       name: 'Michael Chen',
@@ -156,7 +164,8 @@ export const staticBlogPosts: BlogPost[] = [
     excerpt:
       'Explore how digital transformation is reshaping the educational landscape and what educators need to know to stay ahead.',
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-3',
       name: 'Dr. Amina Okafor',
@@ -174,7 +183,8 @@ export const staticBlogPosts: BlogPost[] = [
     excerpt:
       'Discover how companies can use EduPons platform to find, engage, and recruit top talent from educational institutions.',
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-1',
       name: 'Sarah Johnson',
@@ -192,7 +202,8 @@ export const staticBlogPosts: BlogPost[] = [
     excerpt:
       'Learn proven strategies to increase student engagement and participation in both physical and virtual classroom environments.',
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-3',
       name: 'Dr. Amina Okafor',
@@ -210,7 +221,8 @@ export const staticBlogPosts: BlogPost[] = [
     excerpt:
       'A comprehensive guide to help students plan their career path, from choosing a field to landing their first job.',
     content: '',
-    featuredImage: 'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    featuredImage:
+      'https://images.unsplash.com/photo-1505153695651-9366147105f3?fm=jpg&amp;q=60&amp;w=3000&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: {
       id: 'author-2',
       name: 'Michael Chen',

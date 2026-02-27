@@ -1,0 +1,157 @@
+'use client';
+
+import {
+  VStack,
+  Heading,
+  Text,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  FormErrorMessage,
+} from '@chakra-ui/react';
+import { useState } from 'react';
+
+interface Props {
+  nextStep: () => void;
+  prevStep: () => void;
+  role: string; // <-- new prop
+}
+
+export default function StepThree({ nextStep, prevStep, role }: Props) {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!form.name.trim()) {
+      newErrors.name = role === 'company' ? 'Company name is required' : 'Full name is required';
+    }
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) {
+      newErrors.email = 'Enter a valid email';
+    }
+    if (!form.password) {
+      newErrors.password = 'Password is required';
+    } else if (form.password.length < 6) {
+      newErrors.password = 'Minimum 6 characters';
+    }
+    if (!form.confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password';
+    } else if (
+      form.password &&
+      form.password.length >= 6 &&
+      form.password !== form.confirmPassword
+    ) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleContinue = () => {
+    if (validate()) nextStep();
+  };
+
+  return (
+    <VStack spacing={3} align="stretch">
+      <VStack spacing={1} align="flex-start">
+        <Heading fontSize="18px" fontWeight="600" color="#111827">
+          {role === 'company' ? 'Create your company account' : 'Create your EduPons account'}
+        </Heading>
+        <Text fontSize="11px" color="#6B7280">
+          {role === 'company'
+            ? 'Join as a company and connect with talents and educators.'
+            : 'Join a growing network of learners.'}
+        </Text>
+      </VStack>
+
+      {/* Name / Company Name */}
+      <FormControl isInvalid={!!errors.name}>
+        <FormLabel fontSize="12px" mb={1}>
+          {role === 'company' ? 'Company Name' : 'Full Name'}
+        </FormLabel>
+        <Input
+          h="38px"
+          fontSize="13px"
+          placeholder={role === 'company' ? 'Enter your company name' : 'Enter your full name'}
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+        />
+        <FormErrorMessage fontSize="11px">{errors.name}</FormErrorMessage>
+      </FormControl>
+
+      {/* Email */}
+      <FormControl isInvalid={!!errors.email}>
+        <FormLabel fontSize="12px" mb={1}>
+          {role === 'company' ? 'Company Email Address' : 'Email Address'}
+        </FormLabel>
+        <Input
+          h="38px"
+          fontSize="13px"
+          type="email"
+          placeholder={role === 'company' ? 'Enter your company email' : 'Enter your email'}
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+        />
+        <FormErrorMessage fontSize="11px">{errors.email}</FormErrorMessage>
+      </FormControl>
+
+      {/* Password */}
+      <FormControl isInvalid={!!errors.password}>
+        <FormLabel fontSize="12px" mb={1}>
+          Password
+        </FormLabel>
+        <Input
+          h="38px"
+          fontSize="13px"
+          type="password"
+          placeholder="Enter your password"
+          value={form.password}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+        />
+        <FormErrorMessage fontSize="11px">{errors.password}</FormErrorMessage>
+      </FormControl>
+
+      {/* Confirm Password */}
+      <FormControl isInvalid={!!errors.confirmPassword}>
+        <FormLabel fontSize="12px" mb={1}>
+          Confirm Password
+        </FormLabel>
+        <Input
+          h="38px"
+          fontSize="13px"
+          type="password"
+          placeholder="Confirm your password"
+          value={form.confirmPassword}
+          onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
+        />
+        <FormErrorMessage fontSize="11px">{errors.confirmPassword}</FormErrorMessage>
+      </FormControl>
+
+      <Button
+        h="38px"
+        bg="#2F4AA0"
+        color="white"
+        borderRadius="10px"
+        fontSize="13px"
+        fontWeight="500"
+        _hover={{ bg: '#253B80' }}
+        mt={1}
+        onClick={handleContinue}
+      >
+        Continue
+      </Button>
+
+      <Button variant="ghost" size="sm" fontSize="12px" onClick={prevStep}>
+        Back
+      </Button>
+    </VStack>
+  );
+}

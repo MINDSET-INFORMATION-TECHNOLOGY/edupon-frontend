@@ -10,10 +10,9 @@ import {
   Text,
   Flex,
   Heading,
-  Badge,
 } from '@chakra-ui/react';
 import { FiMic } from 'react-icons/fi';
-import { MdBusiness } from 'react-icons/md';
+import BadgeComponent from '../badge';
 
 const testimonials = [
   {
@@ -53,21 +52,7 @@ export default function Testimonials() {
       <Container maxW="container.xl" py={20}>
         <VStack spacing={8} align="center" textAlign="center">
           {/* Head tag */}
-          <Badge
-            gap={1}
-            display="flex"
-            justifyContent={'center'}
-            alignItems={'center'}
-            bgColor={'white'}
-            border={'2px'}
-            px={3}
-            py={2}
-            borderColor={'brand.50'}
-            borderRadius={'full'}
-          >
-            <Icon as={MdBusiness} color={'brand.500'} boxSize={5} />
-            <Text color={'brand.500'}>Testimonials</Text>
-          </Badge>
+          <BadgeComponent name="Testimonials" />
 
           {/* Heading */}
           <Flex direction={'column'} gap={4} justifyContent={'center'} alignItems={'center'}>

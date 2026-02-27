@@ -1,13 +1,15 @@
 import { Metadata } from 'next';
 import { Box, Container } from '@chakra-ui/react';
-import Hero from '@/components/contactUsComponents/hero';
-import ContactForm from '@/components/contactUsComponents/contactForm';
+import Hero from '@/app/contact/contactUsComponents/hero';
+import ContactForm from '@/app/contact/contactUsComponents/contactForm';
+import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
 
 // SEO Metadata for contact page
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    'Get in touch with EduPons. Have questions about our platform? Want to partner with us? Reach out to our team and we\'ll get back to you as soon as possible.',
+    "Get in touch with EduPons. Have questions about our platform? Want to partner with us? Reach out to our team and we'll get back to you as soon as possible.",
   keywords: [
     'contact EduPons',
     'get in touch',
@@ -19,14 +21,14 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Contact Us | EduPons',
-    description: 'Get in touch with EduPons. We\'re here to help!',
+    description: "Get in touch with EduPons. We're here to help!",
     type: 'website',
     url: '/contact',
   },
   twitter: {
     card: 'summary',
     title: 'Contact Us | EduPons',
-    description: 'Get in touch with EduPons. We\'re here to help!',
+    description: "Get in touch with EduPons. We're here to help!",
   },
   alternates: {
     canonical: '/contact',
@@ -66,7 +68,9 @@ export default function ContactUs() {
       <Box minH="100vh" bg="gray.50">
         <Hero />
         <Container maxW="container.xl">
+          <Navbar />
           <ContactForm />
+          <Footer />
         </Container>
       </Box>
     </>

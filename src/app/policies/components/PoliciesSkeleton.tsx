@@ -1,9 +1,4 @@
-import {
-  VStack,
-  Box,
-  Skeleton,
-  SkeletonText,
-} from '@chakra-ui/react';
+import { VStack, Box, Skeleton, SkeletonText } from '@chakra-ui/react';
 
 /**
  * SEO-friendly loading skeleton for policies page
@@ -19,7 +14,13 @@ export default function PoliciesSkeleton() {
       </Box>
 
       {/* Tab controls skeleton */}
-      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" w="100%">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        w="100%"
+      >
         <Box w="248px" h="52px" borderWidth="1px" rounded="30px" p={1}>
           <Box display="flex" flexDirection="row" justifyContent="center" gap={4} h="100%">
             <Skeleton height="44px" width="125px" borderRadius="full" />

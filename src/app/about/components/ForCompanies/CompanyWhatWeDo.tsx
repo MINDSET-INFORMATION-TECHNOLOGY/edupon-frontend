@@ -1,12 +1,12 @@
 'use client';
 
 import { VStack, HStack, Stack, Box, Text, Image } from '@chakra-ui/react';
+import BadgeComponent from '@/components/badge';
 
 const WhatWeDo = () => {
   return (
     <Box mb={4} w="100%">
       <VStack w="100%">
-
         {/* Wrapper */}
         <Box
           w="100%"
@@ -18,28 +18,8 @@ const WhatWeDo = () => {
           justifyContent="center"
         >
           <VStack w="100%">
-
             {/* Badge */}
-            <Box
-              w="45%"
-              maxW="125px"
-              py="6px"
-              borderWidth="1px"
-              rounded="30px"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <HStack>
-                <Image
-                  src="/aboutUs/mingcute_building-5-line.svg"
-                  w="16px"
-                />
-                <Text fontSize="14px" color="#1E3A8A">
-                  What we do
-                </Text>
-              </HStack>
-            </Box>
+            <BadgeComponent name="What We Do" />
 
             {/* Title */}
             <Text
@@ -71,11 +51,7 @@ const WhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Discover Emerging Talent
                   </Text>
@@ -95,11 +71,7 @@ const WhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Host or Sponsor Challenges
                   </Text>
@@ -128,18 +100,15 @@ const WhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Build Partnerships
                   </Text>
                 </HStack>
 
                 <Text color="#1A1C1E" fontSize="16px" mt={2} ml={1}>
-                  Collaborate with educators to design learning experiences that align with company goals.
+                  Collaborate with educators to design learning experiences that align with company
+                  goals.
                 </Text>
               </Box>
 
@@ -152,11 +121,7 @@ const WhatWeDo = () => {
                 p="12px"
               >
                 <HStack mt={4}>
-                  <Image
-                    src="/aboutUs/logo.svg"
-                    w="48px"
-                    h="48px"
-                  />
+                  <Image src="/aboutUs/logo.svg" alt="About us" w="48px" h="48px" />
                   <Text color="#1A1C1E" fontSize="20px">
                     Enhance Your Employer Brand
                   </Text>
@@ -167,10 +132,8 @@ const WhatWeDo = () => {
                 </Text>
               </Box>
             </Stack>
-
           </VStack>
         </Box>
-
       </VStack>
     </Box>
   );

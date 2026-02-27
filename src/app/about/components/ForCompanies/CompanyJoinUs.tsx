@@ -36,17 +36,16 @@ const CompanyJoinUs = () => {
             alignItems="center"
             justifyContent="center"
             gap={12}
-            minH='300px'
+            minH="300px"
           >
-
             <Box
-              flex='auto'
+              flex="auto"
               color="white"
-              textAlign='center'
-              maxW='800px'
+              textAlign="center"
+              maxW="800px"
               display="flex"
               flexDirection="column"
-              alignItems='center'
+              alignItems="center"
               justifyContent="center"
             >
               <Heading
@@ -59,8 +58,9 @@ const CompanyJoinUs = () => {
                 Our Vision for Companies
               </Heading>
               <Text fontSize={{ base: 'md', md: 'sm' }} lineHeight="1.8" mb={0}>
-                We envision a world where businesses don’t just hire they inspire. EduPons helps you connect with the next generation of thinkers, 
-                {' '}builders, and leaders before they even graduate.
+                We envision a world where businesses don’t just hire they inspire. EduPons helps you
+                connect with the next generation of thinkers, builders, and leaders before they even
+                graduate.
               </Text>
 
               <Button
@@ -86,7 +86,6 @@ const CompanyJoinUs = () => {
                 Partner with EduPons →
               </Button>
             </Box>
-
           </Box>
         </Container>
       </Box>
