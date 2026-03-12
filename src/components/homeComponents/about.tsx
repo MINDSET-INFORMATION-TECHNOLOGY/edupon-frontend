@@ -7,11 +7,10 @@ import {
   Text,
   Flex,
   Heading,
-  Badge,
   Button,
   SimpleGrid,
 } from '@chakra-ui/react';
-import { MdBusiness } from 'react-icons/md';
+import BadgeComponent from '../badge';
 import { GiOilySpiral } from 'react-icons/gi';
 
 const cards = [
@@ -49,21 +48,7 @@ export default function About() {
       <Container maxW="container.xl" py={20}>
         <VStack spacing={8} align="center" textAlign="center">
           {/* Head tag */}
-          <Badge
-            gap={1}
-            display="flex"
-            justifyContent={'center'}
-            alignItems={'center'}
-            bgColor={'white'}
-            border={'2px'}
-            px={3}
-            py={2}
-            borderColor={'brand.50'}
-            borderRadius={'full'}
-          >
-            <Icon as={MdBusiness} color={'brand.500'} boxSize={5} />
-            <Text color={'brand.500'}>About us</Text>
-          </Badge>
+          <BadgeComponent name="About Us" />
 
           {/* Heading */}
           <Flex direction={'column'} gap={4} justifyContent={'center'} alignItems={'center'}>

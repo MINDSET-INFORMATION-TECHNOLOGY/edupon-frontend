@@ -2,7 +2,7 @@ import { Container, VStack, Heading, Text, Button, Flex, Box, Image } from '@cha
 
 export default function Hero() {
   return (
-    <Box bgGradient="linear(to-b, white, brand.50)">
+    <Box bgGradient="linear(to-b, white, brand.50)" pt={{ base: '90px', md: '90px' }}>
       <Container maxW="container.xl" pt={{ base: 10, md: 20 }}>
         <VStack spacing={8} align="center" textAlign="center">
           <Flex direction={'column'} gap={8} align="center" textAlign="center">
