@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 import PoliciesClient from './components/PoliciesClient';
 import PoliciesSkeleton from './components/PoliciesSkeleton';
+import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
 
 // SEO Metadata for policies page
 export const metadata: Metadata = {
@@ -75,7 +77,9 @@ export default function PoliciesPage() {
 
       {/* Suspense boundary with SEO-friendly skeleton */}
       <Suspense fallback={<PoliciesSkeleton />}>
+        <Navbar />
         <PoliciesClient />
+        <Footer />
       </Suspense>
     </>
   );

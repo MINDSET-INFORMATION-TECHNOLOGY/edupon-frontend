@@ -7,7 +7,7 @@ import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <Box m={4} pt={10} pb={6} bg={'brand.500'} borderRadius={'lg'}>
+    <Box pt={10} pb={6} bg={'brand.500'} borderRadius={'lg'}>
       <Container maxW="container.xl" py={0} px={6}>
         <Flex
           direction={{

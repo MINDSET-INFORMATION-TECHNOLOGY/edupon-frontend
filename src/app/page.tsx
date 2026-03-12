@@ -6,6 +6,8 @@ import HowItWorks from '@/components/homeComponents/howItWorks';
 import Testimonials from '@/components/homeComponents/testimonials';
 import FAQs from '@/components/homeComponents/faq';
 import Message from '@/components/homeComponents/message';
+import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
 
 // Enhanced SEO Metadata for homepage
 export const metadata: Metadata = {
@@ -112,11 +114,13 @@ export default function Home() {
         <Hero />
         <Container maxW="container.xl">
           <Flex direction="column" gap={12}>
+            <Navbar />
             <About />
             <HowItWorks />
             <Testimonials />
             <FAQs />
             <Message />
+            <Footer />
           </Flex>
         </Container>
       </Box>

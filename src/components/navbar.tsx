@@ -109,12 +109,17 @@ export default function Navbar() {
               width={'full'}
               gap={4}
             >
-              <Button size="lg" variant="outline" colorScheme="brand">
-                Log in
-              </Button>
-              <Button size="lg" colorScheme="brand">
-                Register
-              </Button>
+              <Link href="/login">
+                <Button as="a" size="lg" variant="outline" colorScheme="brand">
+                  Log in
+                </Button>
+              </Link>
+
+              <Link href="/sign-up">
+                <Button as="a" size="lg" colorScheme="brand">
+                  Register
+                </Button>
+              </Link>
             </Flex>
           </Stack>
 
@@ -225,12 +230,16 @@ export default function Navbar() {
               </Link>
               <Box pt={2}>
                 <Stack spacing={3}>
-                  <Button size="md" variant="outline" colorScheme="brand" width="full">
-                    Log in
-                  </Button>
-                  <Button size="md" colorScheme="brand" width="full">
-                    Register
-                  </Button>
+                  <Link href="/login">
+                    <Button as="a" size="md" variant="outline" colorScheme="brand" width="full">
+                      Log in
+                    </Button>
+                  </Link>
+                  <Link href="/sign-up">
+                    <Button as="a" size="md" colorScheme="brand" width="full">
+                      Register
+                    </Button>
+                  </Link>
                 </Stack>
               </Box>
             </Stack>

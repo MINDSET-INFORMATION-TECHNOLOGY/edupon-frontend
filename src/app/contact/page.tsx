@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { Box, Container } from '@chakra-ui/react';
 import Hero from '@/app/contact/contactUsComponents/hero';
 import ContactForm from '@/app/contact/contactUsComponents/contactForm';
+import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
 
 // SEO Metadata for contact page
 export const metadata: Metadata = {
@@ -66,7 +68,9 @@ export default function ContactUs() {
       <Box minH="100vh" bg="gray.50">
         <Hero />
         <Container maxW="container.xl">
+          <Navbar />
           <ContactForm />
+          <Footer />
         </Container>
       </Box>
     </>
