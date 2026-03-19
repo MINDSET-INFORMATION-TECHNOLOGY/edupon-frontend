@@ -11,18 +11,18 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
+import { setUserData, setCurrentStep } from '@/store/authSlice';
 
-interface Props {
-  nextStep: () => void;
-  prevStep: () => void;
-  role: string; // <-- new prop
-}
+export default function StepThree() {
+  const dispatch = useAppDispatch();
+  const role = useAppSelector((state) => state.auth.signupData.role);
+  const savedData = useAppSelector((state) => state.auth.signupData);
 
-export default function StepThree({ nextStep, prevStep, role }: Props) {
   const [form, setForm] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: savedData.name || '',
+    email: savedData.email || '',
+    password: savedData.password || '',
     confirmPassword: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -43,11 +43,7 @@ export default function StepThree({ nextStep, prevStep, role }: Props) {
     }
     if (!form.confirmPassword) {
       newErrors.confirmPassword = 'Please confirm your password';
-    } else if (
-      form.password &&
-      form.password.length >= 6 &&
-      form.password !== form.confirmPassword
-    ) {
+    } else if (form.password && form.password !== form.confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
 
@@ -56,7 +52,20 @@ export default function StepThree({ nextStep, prevStep, role }: Props) {
   };
 
   const handleContinue = () => {
-    if (validate()) nextStep();
+    if (validate()) {
+      dispatch(
+        setUserData({
+          name: form.name,
+          email: form.email,
+          password: form.password,
+        })
+      );
+      dispatch(setCurrentStep(4));
+    }
+  };
+
+  const handlePrev = () => {
+    dispatch(setCurrentStep(2));
   };
 
   return (
@@ -149,7 +158,7 @@ export default function StepThree({ nextStep, prevStep, role }: Props) {
         Continue
       </Button>
 
-      <Button variant="ghost" size="sm" fontSize="12px" onClick={prevStep}>
+      <Button variant="ghost" size="sm" fontSize="12px" onClick={handlePrev}>
         Back
       </Button>
     </VStack>

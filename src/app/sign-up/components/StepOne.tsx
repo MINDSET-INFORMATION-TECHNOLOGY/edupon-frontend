@@ -1,29 +1,25 @@
 'use client';
 
 import { VStack, Heading, Text, Button, Radio, RadioGroup, Box } from '@chakra-ui/react';
-import { useState, Dispatch, SetStateAction } from 'react';
+import { useState } from 'react';
+import { useAppDispatch } from '@/hooks/reduxHooks';
+import { setRole, setCurrentStep } from '@/store/authSlice';
 
-// ✅ Updated Props to include setRole
-interface StepOneProps {
-  nextStep: () => void;
-  setRole: Dispatch<SetStateAction<string>>;
-}
-
-export default function StepOne({ nextStep, setRole }: StepOneProps) {
+export default function StepOne() {
   const [value, setValue] = useState('');
+  const dispatch = useAppDispatch();
 
   const handleContinue = () => {
     if (!value) {
-      alert('Please select a role'); // simple validation
+      alert('Please select a role');
       return;
     }
-    setRole(value); // save selected role
-    nextStep();
+    dispatch(setRole(value));
+    dispatch(setCurrentStep(2));
   };
 
   return (
     <VStack spacing={5} align="stretch">
-      {/* Header */}
       <VStack spacing={1} align="flex-start">
         <Heading fontSize="18px" fontWeight="600" color="#111827">
           Welcome to EduPons
@@ -33,7 +29,6 @@ export default function StepOne({ nextStep, setRole }: StepOneProps) {
         </Text>
       </VStack>
 
-      {/* Role Selection */}
       <RadioGroup value={value} onChange={setValue}>
         <VStack spacing={2} align="stretch">
           {[
@@ -59,7 +54,6 @@ export default function StepOne({ nextStep, setRole }: StepOneProps) {
         </VStack>
       </RadioGroup>
 
-      {/* Continue Button */}
       <Button
         h="38px"
         bg="#2F4AA0"

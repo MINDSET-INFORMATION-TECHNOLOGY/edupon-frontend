@@ -1,16 +1,23 @@
 'use client';
 
 import { VStack, Heading, Text, Button, Divider } from '@chakra-ui/react';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
+import { setCurrentStep } from '@/store/authSlice';
 
-interface Props {
-  nextStep: () => void;
-  prevStep: () => void;
-  role: string;
-}
+export default function StepTwo() {
+  const dispatch = useAppDispatch();
+  const role = useAppSelector((state) => state.auth.signupData.role);
 
-export default function StepTwo({ nextStep, prevStep, role }: Props) {
   const handleOAuth = (provider: string) => {
     console.log(`Continue with ${provider}`);
+  };
+
+  const handleNext = () => {
+    dispatch(setCurrentStep(3));
+  };
+
+  const handlePrev = () => {
+    dispatch(setCurrentStep(1));
   };
 
   return (
@@ -21,6 +28,8 @@ export default function StepTwo({ nextStep, prevStep, role }: Props) {
           <span style={{ color: '#2F4AA0' }}>Educator</span>
         ) : role === 'student' ? (
           <span style={{ color: '#2F4AA0' }}>Talent</span>
+        ) : role === 'company' ? (
+          <span style={{ color: '#2F4AA0' }}>Company</span>
         ) : null}
       </Heading>
 
@@ -53,7 +62,7 @@ export default function StepTwo({ nextStep, prevStep, role }: Props) {
         color="white"
         fontSize="13px"
         _hover={{ bg: '#253B80' }}
-        onClick={nextStep}
+        onClick={handleNext}
       >
         Continue with email
       </Button>
@@ -62,7 +71,7 @@ export default function StepTwo({ nextStep, prevStep, role }: Props) {
         By continuing, you agree to our Terms of Use and Privacy Policy.
       </Text>
 
-      <Button variant="ghost" size="xs" onClick={prevStep}>
+      <Button variant="ghost" size="xs" onClick={handlePrev}>
         Back
       </Button>
     </VStack>
