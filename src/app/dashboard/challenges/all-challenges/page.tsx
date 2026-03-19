@@ -4,9 +4,6 @@ import {useState} from 'react'
 import { 
   Box, 
   Text, 
-  Input, 
-  Textarea, 
-  Button, 
   InputGroup,
   InputLeftElement,
   Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
@@ -68,13 +65,13 @@ export default function AllChallenges() {
               <All search={search} />
             </TabPanel>
             <TabPanel>
-              <Ongoing />
+              <Ongoing search={search} />
             </TabPanel>
             <TabPanel>
-              <Completed />
+              <Completed search={search} />
             </TabPanel>
             <TabPanel>
-              <Upcoming />
+              <Upcoming search={search} />
             </TabPanel>
           </TabPanels>
         </Tabs>
