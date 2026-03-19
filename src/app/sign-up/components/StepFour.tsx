@@ -50,21 +50,35 @@ export default function StepFour() {
         formData.append('institution', institution);
       }
 
-      // Make API call using env variable
-      const response = await fetch(`${API_URL}/register`, {
+      // 1. Register the user
+      const registerResponse = await fetch(`${API_URL}/register`, {
         method: 'POST',
         body: formData,
       });
 
-      const result = await response.json();
+      const registerResult = await registerResponse.json();
 
-      if (!response.ok) {
-        throw new Error(result.message || 'Registration failed');
+      if (!registerResponse.ok) {
+        throw new Error(registerResult.message || 'Registration failed');
+      }
+
+      // 2. Request OTP to be sent
+      try {
+        await fetch(`${API_URL}/otp/request`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: signupData.email }),
+        });
+      } catch (otpError) {
+        // If OTP request fails, registration still succeeded
+        console.log('OTP request failed, but user is registered');
       }
 
       toast({
         title: 'Account created!',
-        description: 'Please check your email for OTP.',
+        description: 'Please check your email for the verification code.',
         status: 'success',
         duration: 5000,
       });
@@ -90,6 +104,7 @@ export default function StepFour() {
 
   return (
     <VStack spacing={3} align="stretch">
+      {/* Header */}
       <VStack spacing={1} align="flex-start">
         <Heading fontSize="18px" fontWeight="600" color="#111827">
           Finish setting up your account
@@ -99,6 +114,7 @@ export default function StepFour() {
         </Text>
       </VStack>
 
+      {/* Institution */}
       <FormControl>
         <FormLabel fontSize="12px" mb={1}>
           Institution (optional)
@@ -106,12 +122,14 @@ export default function StepFour() {
         <Input
           h="38px"
           fontSize="13px"
+          placeholder="Enter your institution"
           value={institution}
           onChange={(e) => setInstitution(e.target.value)}
           isDisabled={isLoading}
         />
       </FormControl>
 
+      {/* Area of Interest */}
       <FormControl isInvalid={!!error}>
         <FormLabel fontSize="12px" mb={1}>
           Area of Interest
@@ -119,6 +137,7 @@ export default function StepFour() {
         <Input
           h="38px"
           fontSize="13px"
+          placeholder="e.g., Computer Science, Business, Design"
           value={interest}
           onChange={(e) => setInterest(e.target.value)}
           isDisabled={isLoading}
@@ -126,6 +145,7 @@ export default function StepFour() {
         <FormErrorMessage fontSize="11px">{error}</FormErrorMessage>
       </FormControl>
 
+      {/* Continue Button */}
       <Button
         h="38px"
         bg="#2F4AA0"
@@ -142,6 +162,7 @@ export default function StepFour() {
         Create Account
       </Button>
 
+      {/* Back Button */}
       <Button variant="ghost" size="sm" fontSize="12px" onClick={handlePrev} isDisabled={isLoading}>
         Back
       </Button>

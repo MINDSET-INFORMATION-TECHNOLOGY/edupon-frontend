@@ -10,17 +10,30 @@ import {
   Input,
   Button,
   FormErrorMessage,
+  useToast,
+  InputGroup,
+  InputRightElement,
+  IconButton,
 } from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import AuthLayout from '@/app/sign-up/components/AuthLayout';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface Props {
   nextStep: () => void;
   prevStep: () => void;
+  email: string;
+  otp: string;
 }
 
-export default function ForgotPasswordStep3({ nextStep, prevStep }: Props) {
+export default function ForgotPasswordStep3({ nextStep, prevStep, email, otp }: Props) {
   const [form, setForm] = useState({ password: '', confirmPassword: '' });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState<{ password?: string; confirmPassword?: string }>({});
+  const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
 
   const validate = () => {
     const newErrors: typeof errors = {};
@@ -34,9 +47,55 @@ export default function ForgotPasswordStep3({ nextStep, prevStep }: Props) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleContinue = () => {
-    if (validate()) nextStep();
+  const handleContinue = async () => {
+    if (!validate()) return;
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`${API_URL}/password/reset`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          otp: otp,
+          new_password: form.password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to reset password');
+      }
+
+      toast({
+        title: 'Password reset successful!',
+        description: 'You can now log in with your new password.',
+        status: 'success',
+        duration: 5000,
+      });
+
+      nextStep();
+    } catch (error: any) {
+      toast({
+        title: 'Reset failed',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  const isFormValid =
+    form.password &&
+    form.confirmPassword &&
+    form.password.length >= 6 &&
+    form.password === form.confirmPassword;
 
   return (
     <AuthLayout imageSrc="/auth1.png" step={3} totalSteps={4} imagePosition="right" type="login">
@@ -55,14 +114,27 @@ export default function ForgotPasswordStep3({ nextStep, prevStep }: Props) {
           <FormLabel fontSize="12px" mb={1}>
             New Password
           </FormLabel>
-          <Input
-            type="password"
-            placeholder="Enter your new password"
-            h="38px"
-            fontSize="13px"
-            value={form.password}
-            onChange={(e) => setForm({ ...form, password: e.target.value })}
-          />
+          <InputGroup>
+            <Input
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Enter your new password"
+              h="38px"
+              fontSize="13px"
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+              isDisabled={isLoading}
+            />
+            <InputRightElement height="38px">
+              <IconButton
+                aria-label="Toggle password visibility"
+                variant="ghost"
+                size="sm"
+                icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                onClick={() => setShowPassword(!showPassword)}
+                isDisabled={isLoading}
+              />
+            </InputRightElement>
+          </InputGroup>
           <FormErrorMessage fontSize="11px">{errors.password}</FormErrorMessage>
         </FormControl>
 
@@ -71,14 +143,27 @@ export default function ForgotPasswordStep3({ nextStep, prevStep }: Props) {
           <FormLabel fontSize="12px" mb={1}>
             Confirm New Password
           </FormLabel>
-          <Input
-            type="password"
-            placeholder="Confirm new password"
-            h="38px"
-            fontSize="13px"
-            value={form.confirmPassword}
-            onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-          />
+          <InputGroup>
+            <Input
+              type={showConfirmPassword ? 'text' : 'password'}
+              placeholder="Confirm new password"
+              h="38px"
+              fontSize="13px"
+              value={form.confirmPassword}
+              onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
+              isDisabled={isLoading}
+            />
+            <InputRightElement height="38px">
+              <IconButton
+                aria-label="Toggle password visibility"
+                variant="ghost"
+                size="sm"
+                icon={showConfirmPassword ? <ViewOffIcon /> : <ViewIcon />}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                isDisabled={isLoading}
+              />
+            </InputRightElement>
+          </InputGroup>
           <FormErrorMessage fontSize="11px">{errors.confirmPassword}</FormErrorMessage>
         </FormControl>
 
@@ -91,14 +176,14 @@ export default function ForgotPasswordStep3({ nextStep, prevStep }: Props) {
           borderRadius="10px"
           _hover={{ bg: '#253B80' }}
           onClick={handleContinue}
-          isDisabled={
-            !form.password || !form.confirmPassword || !!errors.password || !!errors.confirmPassword
-          }
+          isDisabled={!isFormValid || isLoading}
+          isLoading={isLoading}
+          loadingText="Resetting..."
         >
-          Finish
+          Reset Password
         </Button>
 
-        <Button variant="ghost" size="sm" fontSize="12px" onClick={prevStep}>
+        <Button variant="ghost" size="sm" fontSize="12px" onClick={prevStep} isDisabled={isLoading}>
           Back
         </Button>
       </VStack>

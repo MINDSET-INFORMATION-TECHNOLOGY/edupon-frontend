@@ -11,7 +11,7 @@ export default function StepFive() {
   const dispatch = useAppDispatch();
   const toast = useToast();
   const { signupData, isLoading } = useAppSelector((state) => state.auth);
-  const [otp, setOtp] = useState(['', '', '', '']);
+  const [otp, setOtp] = useState(['', '', '', '', '', '']); // 6 digits for OTP
   const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleChange = (value: string, index: number) => {
@@ -21,13 +21,15 @@ export default function StepFive() {
     updated[index] = value;
     setOtp(updated);
 
-    if (value && index < 3) {
+    // Auto-focus next input
+    if (value && index < 5) {
       inputsRef.current[index + 1]?.focus();
     }
   };
 
   const handleBackspace = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
     if (e.key === 'Backspace' && !otp[index] && index > 0) {
+      // Focus previous input on backspace
       inputsRef.current[index - 1]?.focus();
     }
   };
@@ -46,8 +48,7 @@ export default function StepFive() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: signupData.email,
-          code: otp.join(''),
+          otp: otp.join(''), // API expects "otp" field with 6-digit code
         }),
       });
 
@@ -57,13 +58,6 @@ export default function StepFive() {
         throw new Error(result.message || 'Invalid OTP');
       }
 
-      // Store the access token (assuming it comes in the response)
-      if (result.access_token) {
-        dispatch(setAccessToken(result.access_token));
-        // You might want to store in localStorage/cookies here
-        localStorage.setItem('accessToken', result.access_token);
-      }
-
       toast({
         title: 'Email verified!',
         description: 'Your account has been successfully verified.',
@@ -71,11 +65,51 @@ export default function StepFive() {
         duration: 5000,
       });
 
+      // Move to welcome screen
       dispatch(setCurrentStep(6));
     } catch (error: any) {
       dispatch(setError(error.message));
       toast({
         title: 'Verification Failed',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+      });
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+
+  const handleResendOtp = async () => {
+    dispatch(setLoading(true));
+
+    try {
+      const response = await fetch(`${API_URL}/otp/request`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: signupData.email }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to resend OTP');
+      }
+
+      toast({
+        title: 'OTP Resent',
+        description: 'Please check your email for the new code.',
+        status: 'success',
+        duration: 5000,
+      });
+
+      // Clear OTP inputs for new code
+      setOtp(['', '', '', '', '', '']);
+      // Focus first input
+      inputsRef.current[0]?.focus();
+    } catch (error: any) {
+      toast({
+        title: 'Failed to resend',
         description: error.message,
         status: 'error',
         duration: 5000,
@@ -91,23 +125,21 @@ export default function StepFive() {
 
   return (
     <VStack spacing={8} textAlign="center" w="100%" bg="white" px={4} py={6}>
+      {/* Top notice */}
       <Text fontSize="12px" color="gray.600">
-        OTP sent to{' '}
+        Verification code sent to{' '}
         <Text as="span" fontWeight="500" color="gray.800">
           {signupData.email}
         </Text>
-        , please check your inbox or spam for OTP.
       </Text>
 
+      {/* Main instruction */}
       <Text fontSize="15px" fontWeight="400" color="gray.700" lineHeight="1.6" maxW="300px">
-        Please input OTP sent to{' '}
-        <Text as="span" fontWeight="500" color="gray.900">
-          {signupData.email}
-        </Text>{' '}
-        to finish setting up your account
+        Please enter the 6-digit code sent to your email to verify your account
       </Text>
 
-      <HStack spacing={4}>
+      {/* OTP Boxes - 6 digits */}
+      <HStack spacing={4} justify="center">
         {otp.map((digit, index) => (
           <Input
             key={index}
@@ -136,6 +168,7 @@ export default function StepFive() {
         ))}
       </HStack>
 
+      {/* Verify button */}
       <Button
         h="42px"
         w="100%"
@@ -153,6 +186,18 @@ export default function StepFive() {
         Verify Account
       </Button>
 
+      {/* Resend OTP */}
+      <Button
+        variant="ghost"
+        size="sm"
+        fontSize="12px"
+        onClick={handleResendOtp}
+        isDisabled={isLoading}
+      >
+        Resend Code
+      </Button>
+
+      {/* Back */}
       <Button variant="ghost" size="sm" fontSize="12px" onClick={handlePrev} isDisabled={isLoading}>
         Back
       </Button>

@@ -9,6 +9,7 @@ import ForgotPasswordStep4 from './ForgotPasswordStep4';
 export default function ForgotPasswordClient() {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
+  const [otp, setOtp] = useState(''); // Store OTP after verification
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
@@ -16,8 +17,17 @@ export default function ForgotPasswordClient() {
   return (
     <>
       {step === 1 && <ForgotPasswordStep1 nextStep={nextStep} setEmail={setEmail} />}
-      {step === 2 && <ForgotPasswordStep2 nextStep={nextStep} prevStep={prevStep} email={email} />}
-      {step === 3 && <ForgotPasswordStep3 nextStep={nextStep} prevStep={prevStep} />}
+      {step === 2 && (
+        <ForgotPasswordStep2
+          nextStep={nextStep}
+          prevStep={prevStep}
+          email={email}
+          setOtp={setOtp}
+        />
+      )}
+      {step === 3 && (
+        <ForgotPasswordStep3 nextStep={nextStep} prevStep={prevStep} email={email} otp={otp} />
+      )}
       {step === 4 && <ForgotPasswordStep4 />}
     </>
   );
