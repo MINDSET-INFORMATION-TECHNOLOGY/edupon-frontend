@@ -35,7 +35,7 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Filter posts based on search and category
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const filteredPosts = useMemo(() => {
     let filtered = initialPosts;
 
