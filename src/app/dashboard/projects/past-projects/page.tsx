@@ -1,4 +1,4 @@
-import { Box, Text, Grid, Flex} from '@chakra-ui/react';
+import { Box, Text, Grid, Flex } from '@chakra-ui/react';
 import { FiCheck } from 'react-icons/fi';
 
 const pastProjects = [

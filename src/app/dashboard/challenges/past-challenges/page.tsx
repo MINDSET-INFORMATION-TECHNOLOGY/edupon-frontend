@@ -62,11 +62,7 @@ export default function PastChallenges() {
                 p="20px"
                 rounded="lg"
               >
-                <Box
-                  display={'flex'}
-                  flexDirection={'column'}
-                  gap={3}
-                >
+                <Box display={'flex'} flexDirection={'column'} gap={3}>
                   <Box
                     display={'flex'}
                     alignItems={'center'}

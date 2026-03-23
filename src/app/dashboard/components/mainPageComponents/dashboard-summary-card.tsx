@@ -4,7 +4,6 @@ import { Box, Flex, HStack, Icon, Progress, Text } from '@chakra-ui/react';
 import { FiArrowRight, FiTrendingUp } from 'react-icons/fi';
 import type { DashboardSectionCard } from './dashboard-types';
 
-
 export default function DashboardSummaryCard({
   title,
   value,
