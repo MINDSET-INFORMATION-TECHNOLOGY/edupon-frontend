@@ -29,8 +29,10 @@ export const navItems: NavItemType[] = [
     label: 'Challenges',
     icon: FiAward,
     children: [
-      { label: 'General', href: '/dashboard/challenges/general' },
-      { label: 'Security', href: '/dashboard/challenges/security' },
+      { label: 'Set up Challenges', href: '/dashboard/challenges/setup-challenges' },
+      { label: 'Ongoing Challenges', href: '/dashboard/challenges/ongoing-challenges' },
+      { label: 'Past Challenges', href: '/dashboard/challenges/past-challenges' },
+      { label: 'All Challenges', href: '/dashboard/challenges/all-challenges' },
     ],
   },
   {
