@@ -2,28 +2,28 @@
 
 import { Box, Text, Input, Textarea, Button } from '@chakra-ui/react';
 
-export default function CreateProjects() {
+export default function SetupChallenges() {
   return (
     <Box display={'flex'} flexDirection={'column'} gap={6}>
       <Box>
         <Text fontSize="32px" fontWeight="bold">
-          Create Projects
+          Set Up Challenges
         </Text>
         <Text color="#70777F" fontSize="16px">
-          Start a new academic project
+          Create a new challenge for participants
         </Text>
 
         <Box border="1px solid #F7F6F6" w="100%" h="auto" p="32px" rounded="lg" mt="24px">
           <Text fontSize="24px" fontWeight="bold">
-            Project Details
+            Challenge Details
           </Text>
 
           <Text color="#595959" mt="24px" mb="5px">
-            Project Title
+            Challenge Title
           </Text>
           <Input
             type="text"
-            placeholder="Enter Project Title"
+            placeholder="Enter Challenge Title"
             w="100%"
             border="1px solid #CBCBCB"
             _focus={{
@@ -36,7 +36,7 @@ export default function CreateProjects() {
             Description
           </Text>
           <Textarea
-            placeholder="Describe your Project Goals and Scope"
+            placeholder="Describe the Challenge objectives and rules"
             w="100%"
             h="121px"
             border="1px solid #CBCBCB"
@@ -86,8 +86,22 @@ export default function CreateProjects() {
             </Box>
           </Box>
 
+          <Text color="#595959" mt="24px" mb="5px">
+            Max Participants
+          </Text>
+          <Input
+            type="text"
+            placeholder="Enter Maximum number of participants"
+            w="100%"
+            border="1px solid #CBCBCB"
+            _focus={{
+              outline: 'none',
+              boxShadow: 'none',
+            }}
+          />
+
           <Button w="100%" mt="24px" mb="5px">
-            Create Projects
+            Create Challenge
           </Button>
         </Box>
       </Box>

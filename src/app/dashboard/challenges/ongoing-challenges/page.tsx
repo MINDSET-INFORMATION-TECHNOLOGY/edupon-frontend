@@ -1,45 +1,45 @@
-import { Box, Text, Button, Grid, Flex, Progress } from '@chakra-ui/react';
-import { FiArrowRight } from 'react-icons/fi';
+import { Box, Text, Grid, Flex, Progress } from '@chakra-ui/react';
+import { FiUsers } from 'react-icons/fi';
 
-const projects = [
+const ongoingChallenges = [
   {
     id: 1,
-    title: 'AI-Powered Assessment Tool',
+    title: 'Data Analysis Sprint',
+    participants: 32,
     progress: 65,
-    track: 'In Progress',
-    due: ' Apr 2026',
+    due: ' 12 Days left',
   },
   {
     id: 2,
     title: 'Academic Writing Guide v2.0',
+    participants: 32,
     progress: 40,
-    track: 'In Progress',
-    due: ' May 2026',
+    due: ' 21 Days left',
   },
   {
     id: 3,
     title: 'Blended Learning Framework',
+    participants: 32,
     progress: 90,
-    track: 'In Progress',
-    due: ' Jun 2026',
+    due: ' 18 Days left',
   },
   {
     id: 4,
     title: 'AI-Powered Assessment Tool',
+    participants: 32,
     progress: 20,
-    track: 'In Progress',
-    due: ' Jul 2026',
+    due: ' 12 Days left',
   },
 ];
-export default function CurrentProjects() {
+export default function OngoingChallenges() {
   return (
     <Box display={'flex'} flexDirection={'column'} gap={6}>
       <Box>
         <Text fontSize="32px" fontWeight="bold">
-          Current Projects
+          Ongoing Challenges
         </Text>
         <Text color="#70777F" fontSize="16px">
-          Track your active projects
+          Monitor your active challenges
         </Text>
 
         <Box w="100%" h="auto" rounded="lg" mt="24px">
@@ -50,9 +50,9 @@ export default function CurrentProjects() {
             }}
             gap={12}
           >
-            {projects.map((project) => (
+            {ongoingChallenges.map((challenge) => (
               <Box
-                key={project.id}
+                key={challenge.id}
                 display={'flex'}
                 flexDirection={'column'}
                 gap={7}
@@ -62,19 +62,20 @@ export default function CurrentProjects() {
                 rounded="lg"
               >
                 <Box
-                  key={project.id}
+                  key={challenge.id}
                   display={'flex'}
                   fontWeight={'medium'}
                   flexDirection={'column'}
                   gap={3}
                 >
-                  <Text>{project.title}</Text>
-                  <Flex align="center" justify={'space-between'} gap={4}>
-                    <Text>Progress</Text>
-                    {project.progress}%
-                  </Flex>
+                  <Text>{challenge.title}</Text>
+                  <Box display={'flex'} alignItems={'center'} gap={2} color="gray.700">
+                    <FiUsers size={16} />
+                    <Text>{challenge.participants} participants</Text>
+                  </Box>
+
                   <Progress
-                    value={project.progress}
+                    value={challenge.progress}
                     colorScheme="green"
                     bg={'gray.200'}
                     size="sm"
@@ -85,21 +86,13 @@ export default function CurrentProjects() {
                 <Flex align="center" justify={'space-between'} gap={4}>
                   <Box backgroundColor={'gray.200'} px={4} py={1} rounded="full">
                     <Text color="brand.500" fontWeight={'semibold'} fontSize="14px">
-                      {project.track}
+                      {challenge.progress}% completed
                     </Text>
                   </Box>
                   <Text color="gray.400" fontSize="14px" fontWeight={'semibold'}>
-                    Due: {project.due}
+                    {challenge.due}
                   </Text>
                 </Flex>
-                <Button
-                  color={'gray.700'}
-                  _hover={{ color: 'white', backgroundColor: 'brand.500' }}
-                  backgroundColor={'gray.400'}
-                  rightIcon={<FiArrowRight />}
-                >
-                  Open
-                </Button>
               </Box>
             ))}
           </Grid>
