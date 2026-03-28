@@ -9,35 +9,97 @@ import {
   Input,
   Button,
   FormErrorMessage,
+  useToast,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
+import { setUserData, setCurrentStep, setLoading, setError } from '@/store/authSlice';
 
-interface Props {
-  nextStep: () => void;
-  prevStep: () => void;
-}
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function StepFour({ nextStep, prevStep }: Props) {
-  const [institution, setInstitution] = useState('');
-  const [interest, setInterest] = useState('');
-  const [error, setError] = useState('');
+export default function StepFour() {
+  const dispatch = useAppDispatch();
+  const toast = useToast();
+  const { signupData, isLoading } = useAppSelector((state) => state.auth);
 
-  const handleContinue = () => {
+  const [institution, setInstitution] = useState(signupData.institution || '');
+  const [interest, setInterest] = useState(signupData.interest || '');
+  const [error, setLocalError] = useState('');
+
+  const handleContinue = async () => {
     if (!interest.trim()) {
-      setError('Area of interest is required');
+      setLocalError('Area of interest is required');
       return;
     }
+    setLocalError('');
+    dispatch(setLoading(true));
 
-    setError('');
-    nextStep();
+    try {
+      // Save to Redux
+      dispatch(setUserData({ institution, interest }));
+
+      // Prepare FormData
+      const formData = new FormData();
+      formData.append('email', signupData.email);
+      formData.append('fullname', signupData.name);
+      formData.append('password', signupData.password);
+      formData.append('role', signupData.role);
+      formData.append('area_of_interest', interest);
+
+      if (institution) {
+        formData.append('institution', institution);
+      }
+
+      // 1. Register the user
+      const registerResponse = await fetch(`${API_URL}/register`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const registerResult = await registerResponse.json();
+
+      if (!registerResponse.ok) {
+        throw new Error(registerResult.message || 'Registration failed');
+      }
+
+      // 2. Request OTP to be sent
+      try {
+        await fetch(`${API_URL}/otp/request`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: signupData.email }),
+        });
+      } catch (otpError) {
+        // If OTP request fails, registration still succeeded
+        console.log('OTP request failed, but user is registered');
+      }
+
+      toast({
+        title: 'Account created!',
+        description: 'Please check your email for the verification code.',
+        status: 'success',
+        duration: 5000,
+      });
+
+      // Move to OTP step
+      dispatch(setCurrentStep(5));
+    } catch (error: any) {
+      dispatch(setError(error.message));
+      toast({
+        title: 'Registration Error',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+      });
+    } finally {
+      dispatch(setLoading(false));
+    }
   };
 
-  const handleInterestChange = (value: string) => {
-    setInterest(value);
-
-    if (value.trim()) {
-      setError('');
-    }
+  const handlePrev = () => {
+    dispatch(setCurrentStep(3));
   };
 
   return (
@@ -47,13 +109,12 @@ export default function StepFour({ nextStep, prevStep }: Props) {
         <Heading fontSize="18px" fontWeight="600" color="#111827">
           Finish setting up your account
         </Heading>
-
         <Text fontSize="11px" color="#6B7280">
           Provide a few more details to personalize your experience.
         </Text>
       </VStack>
 
-      {/* Institution*/}
+      {/* Institution */}
       <FormControl>
         <FormLabel fontSize="12px" mb={1}>
           Institution (optional)
@@ -61,8 +122,10 @@ export default function StepFour({ nextStep, prevStep }: Props) {
         <Input
           h="38px"
           fontSize="13px"
+          placeholder="Enter your institution"
           value={institution}
           onChange={(e) => setInstitution(e.target.value)}
+          isDisabled={isLoading}
         />
       </FormControl>
 
@@ -74,13 +137,15 @@ export default function StepFour({ nextStep, prevStep }: Props) {
         <Input
           h="38px"
           fontSize="13px"
+          placeholder="e.g., Computer Science, Business, Design"
           value={interest}
-          onChange={(e) => handleInterestChange(e.target.value)}
+          onChange={(e) => setInterest(e.target.value)}
+          isDisabled={isLoading}
         />
         <FormErrorMessage fontSize="11px">{error}</FormErrorMessage>
       </FormControl>
 
-      {/* Continue */}
+      {/* Continue Button */}
       <Button
         h="38px"
         bg="#2F4AA0"
@@ -91,12 +156,14 @@ export default function StepFour({ nextStep, prevStep }: Props) {
         _hover={{ bg: '#253B80' }}
         mt={1}
         onClick={handleContinue}
+        isLoading={isLoading}
+        loadingText="Creating account..."
       >
-        Continue
+        Create Account
       </Button>
 
-      {/* Back */}
-      <Button variant="ghost" size="sm" fontSize="12px" onClick={prevStep}>
+      {/* Back Button */}
+      <Button variant="ghost" size="sm" fontSize="12px" onClick={handlePrev} isDisabled={isLoading}>
         Back
       </Button>
     </VStack>

@@ -2,15 +2,27 @@
 
 import { VStack, Heading, Text, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export default function LoginStepThree() {
+export default function LoginStepTwo() {
   const router = useRouter();
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    // Get user name from localStorage (set in Step 1)
+    const name = localStorage.getItem('userName') || 'User';
+    setUserName(name);
+  }, []);
+
+  const handleContinue = () => {
+    router.push('/dashboard');
+  };
 
   return (
     <VStack spacing={3} textAlign="center">
       {/* Heading */}
       <Heading fontSize="18px" fontWeight="600" color="#111827">
-        Welcome to back SmartLink, Adegbola! 🎉
+        Welcome back to EduPons, {userName}! 🎉
       </Heading>
 
       {/* Description */}
@@ -27,9 +39,9 @@ export default function LoginStepThree() {
         fontWeight="500"
         borderRadius="10px"
         _hover={{ bg: '#253B80' }}
-        onClick={() => router.push('/dashboard')}
+        onClick={handleContinue}
       >
-        Continue
+        Continue to Dashboard
       </Button>
     </VStack>
   );
