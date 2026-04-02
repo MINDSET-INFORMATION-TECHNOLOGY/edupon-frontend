@@ -4,31 +4,31 @@ import { FiCheck, FiUsers } from 'react-icons/fi';
 const pastChallenges = [
   {
     id: 1,
-    title: 'Data Analysis Sprint',
+    title: 'Academic Writing Challenge',
     winner: 'Alpha',
-    participants: 10,
-    endDate: 'Mar 2024',
+    participants: 40,
+    endDate: 'Dec 2024',
   },
   {
     id: 2,
-    title: 'Academic Writing Guide v2.0',
+    title: 'EdTech Hackathon 2025',
     winner: 'Mindset',
-    participants: 15,
-    endDate: 'May 2024',
+    participants: 50,
+    endDate: 'Jan 2025',
   },
   {
     id: 3,
-    title: 'Blended Learning Framework',
+    title: 'Research Methods Quiz Bowl',
     winner: 'Scholars United',
-    participants: 20,
-    endDate: 'Apr 2024',
+    participants: 28,
+    endDate: 'Mar 2024',
   },
   {
     id: 4,
-    title: 'AI-Powered Assessment Tool',
-    winner: 'Blackhat',
-    participants: 25,
-    endDate: 'Mar 2024',
+    title: 'Hack The Box',
+    winner: 'Team Blackhat',
+    participants: 50,
+    endDate: 'April 2025',
   },
 ];
 
@@ -37,10 +37,10 @@ export default function PastChallenges() {
     <Box display={'flex'} flexDirection={'column'} gap={6}>
       <Box>
         <Text fontSize="32px" fontWeight="bold">
-          Past Projects
+          Past Challenge
         </Text>
         <Text color="#70777F" fontSize="16px">
-          View your completed projects
+          View your completed challenge
         </Text>
 
         <Box w="100%" h="auto" rounded="lg" mt="24px">
