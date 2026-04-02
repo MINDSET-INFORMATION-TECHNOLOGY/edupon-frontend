@@ -1,5 +1,5 @@
 import {
-  FiAward,
+  // FiAward,
   FiBell,
   FiBookOpen,
   FiBriefcase,

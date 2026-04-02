@@ -14,53 +14,53 @@ export const navItems: NavItemType[] = [
   {
     label: 'Home',
     icon: FiHome,
-    href: '/dashboard',
+    href: '/educator-dashboard',
   },
   {
     label: 'Projects',
     icon: FiFolder,
     children: [
-      { label: 'Past Projects', href: '/dashboard/projects/past-projects' },
-      { label: 'Current Projects', href: '/dashboard/projects/current-projects' },
-      { label: 'Create Project', href: '/dashboard/projects/create-project' },
+      { label: 'Past Projects', href: '/educator-dashboard/projects/past-projects' },
+      { label: 'Current Projects', href: '/educator-dashboard/projects/current-projects' },
+      { label: 'Create Project', href: '/educator-dashboard/projects/create-project' },
     ],
   },
   {
     label: 'Challenges',
     icon: FiAward,
     children: [
-      { label: 'Set up Challenges', href: '/dashboard/challenges/setup-challenges' },
-      { label: 'Ongoing Challenges', href: '/dashboard/challenges/ongoing-challenges' },
-      { label: 'Past Challenges', href: '/dashboard/challenges/past-challenges' },
-      { label: 'All Challenges', href: '/dashboard/challenges/all-challenges' },
+      { label: 'Set up Challenges', href: '/educator-dashboard/challenges/setup-challenges' },
+      { label: 'Ongoing Challenges', href: '/educator-dashboard/challenges/ongoing-challenges' },
+      { label: 'Past Challenges', href: '/educator-dashboard/challenges/past-challenges' },
+      { label: 'All Challenges', href: '/educator-dashboard/challenges/all-challenges' },
     ],
   },
   {
     label: 'Resources',
     icon: FiBookOpen,
     children: [
-      { label: 'Resourcesa', href: '/dashboard/resources/resourcesa' },
-      { label: 'Resourcesb', href: '/dashboard/resources/resourcesb' },
+      { label: 'Resourcesa', href: '/educator-dashboard/resources/resourcesa' },
+      { label: 'Resourcesb', href: '/educator-dashboard/resources/resourcesb' },
     ],
   },
   {
     label: 'Analytics',
     icon: FiTrendingUp,
-    href: '/dashboard/analytics',
+    href: '/educator-dashboard/analytics',
   },
   {
     label: 'Portfolio',
     icon: FiBriefcase,
-    href: '/dashboard/portfolio',
+    href: '/educator-dashboard/portfolio',
   },
   {
     label: 'Notifications',
     icon: FiBell,
-    href: '/dashboard/notifications',
+    href: '/educator-dashboard/notifications',
   },
   {
     label: 'Settings',
     icon: FiSettings,
-    href: '/dashboard/settings',
+    href: '/educator-dashboard/settings',
   },
 ];
