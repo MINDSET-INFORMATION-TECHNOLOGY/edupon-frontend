@@ -9,7 +9,6 @@ import Message from '@/components/homeComponents/message';
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 
-// Enhanced SEO Metadata for homepage
 export const metadata: Metadata = {
   title: 'EduPons - Bridge to Your Next Stride',
   description:

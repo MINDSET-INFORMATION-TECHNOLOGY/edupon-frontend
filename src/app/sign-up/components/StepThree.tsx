@@ -7,10 +7,14 @@ import {
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
+  InputRightElement,
   Button,
   FormErrorMessage,
+  IconButton,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { setUserData, setCurrentStep } from '@/store/authSlice';
 
@@ -26,6 +30,10 @@ export default function StepThree() {
     confirmPassword: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Password visibility states
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -112,37 +120,89 @@ export default function StepThree() {
         <FormErrorMessage fontSize="11px">{errors.email}</FormErrorMessage>
       </FormControl>
 
-      {/* Password */}
+      {/* Password with visibility toggle */}
       <FormControl isInvalid={!!errors.password}>
         <FormLabel fontSize="12px" mb={1}>
           Password
         </FormLabel>
-        <Input
-          h="38px"
-          fontSize="13px"
-          type="password"
-          placeholder="Enter your password"
-          value={form.password}
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-        />
+        <InputGroup>
+          <Input
+            h="38px"
+            fontSize="13px"
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Enter your password"
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+          />
+          <InputRightElement h="38px">
+            <IconButton
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+              size="sm"
+              variant="ghost"
+              onClick={() => setShowPassword(!showPassword)}
+              _hover={{ bg: 'transparent' }}
+              _active={{ bg: 'transparent' }}
+            />
+          </InputRightElement>
+        </InputGroup>
         <FormErrorMessage fontSize="11px">{errors.password}</FormErrorMessage>
       </FormControl>
 
-      {/* Confirm Password */}
+      {/* Confirm Password with visibility toggle */}
       <FormControl isInvalid={!!errors.confirmPassword}>
         <FormLabel fontSize="12px" mb={1}>
           Confirm Password
         </FormLabel>
-        <Input
-          h="38px"
-          fontSize="13px"
-          type="password"
-          placeholder="Confirm your password"
-          value={form.confirmPassword}
-          onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-        />
+        <InputGroup>
+          <Input
+            h="38px"
+            fontSize="13px"
+            type={showConfirmPassword ? 'text' : 'password'}
+            placeholder="Confirm your password"
+            value={form.confirmPassword}
+            onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
+          />
+          <InputRightElement h="38px">
+            <IconButton
+              aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+              icon={showConfirmPassword ? <ViewOffIcon /> : <ViewIcon />}
+              size="sm"
+              variant="ghost"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              _hover={{ bg: 'transparent' }}
+              _active={{ bg: 'transparent' }}
+            />
+          </InputRightElement>
+        </InputGroup>
         <FormErrorMessage fontSize="11px">{errors.confirmPassword}</FormErrorMessage>
       </FormControl>
+
+      {/* Password strength indicator (optional but helpful) */}
+      {form.password && form.password.length > 0 && (
+        <VStack spacing={1} align="flex-start">
+          <Text fontSize="10px" color="gray.500">
+            Password strength:
+            <Text
+              as="span"
+              ml={1}
+              color={
+                form.password.length < 6
+                  ? 'red.500'
+                  : form.password.length < 8
+                    ? 'orange.500'
+                    : 'green.500'
+              }
+              fontWeight="500"
+            >
+              {form.password.length < 6 ? 'Weak' : form.password.length < 8 ? 'Medium' : 'Strong'}
+            </Text>
+          </Text>
+          <Text fontSize="9px" color="gray.400">
+            Use at least 6 characters
+          </Text>
+        </VStack>
+      )}
 
       <Button
         h="38px"

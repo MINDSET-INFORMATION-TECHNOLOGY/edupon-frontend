@@ -1,13 +1,23 @@
 'use client';
 
 import { VStack, Heading, Text, Button, Radio, RadioGroup, Box } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useAppDispatch } from '@/hooks/reduxHooks';
 import { setRole, setCurrentStep } from '@/store/authSlice';
 
 export default function StepOne() {
+  const searchParams = useSearchParams();
   const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
+
+  // Auto-select role if provided in URL
+  useEffect(() => {
+    const roleParam = searchParams.get('role');
+    if (roleParam && ['student', 'educator', 'company'].includes(roleParam)) {
+      setValue(roleParam);
+    }
+  }, [searchParams]);
 
   const handleContinue = () => {
     if (!value) {

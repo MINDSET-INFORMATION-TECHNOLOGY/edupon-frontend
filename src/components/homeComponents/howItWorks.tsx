@@ -12,6 +12,7 @@ import {
   HStack,
   ListItem,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import BadgeComponent from '../badge';
 import { FaGraduationCap, FaChalkboardTeacher, FaBuilding } from 'react-icons/fa';
 import { useRef, useState, useEffect } from 'react';
@@ -28,6 +29,7 @@ const slides = [
       'Access internships and sponsored challenges',
     ],
     buttonText: 'Join as a Student',
+    buttonLink: '/sign-up?role=student',
     flowSteps: [
       'Create Your Profile',
       'Join Challenges',
@@ -50,6 +52,7 @@ const slides = [
       "Showcase your institution's impact",
     ],
     buttonText: 'Join as an Educator',
+    buttonLink: '/sign-up?role=educator',
     flowSteps: [
       'Create a Challenge',
       'Track Engagement',
@@ -72,6 +75,7 @@ const slides = [
       'Strengthen your brand in education',
     ],
     buttonText: 'Join as a Company',
+    buttonLink: '/sign-up?role=company',
     flowSteps: [
       'Create or Sponsor Challenges',
       'Discover Talent Early',
@@ -206,21 +210,24 @@ export default function HowItWorks() {
                         ))}
                       </List>
 
-                      <Button
-                        colorScheme="blue"
-                        size="lg"
-                        px={8}
-                        py={6}
-                        fontSize="md"
-                        fontWeight="semibold"
-                        _hover={{
-                          transform: 'translateY(-2px)',
-                          boxShadow: 'lg',
-                        }}
-                        transition="all 0.3s"
-                      >
-                        {slide.buttonText}
-                      </Button>
+                      <Link href={slide.buttonLink} passHref>
+                        <Button
+                          as="a"
+                          colorScheme="blue"
+                          size="lg"
+                          px={8}
+                          py={6}
+                          fontSize="md"
+                          fontWeight="semibold"
+                          _hover={{
+                            transform: 'translateY(-2px)',
+                            boxShadow: 'lg',
+                          }}
+                          transition="all 0.3s"
+                        >
+                          {slide.buttonText}
+                        </Button>
+                      </Link>
                     </Box>
 
                     {/* Right Side - Flow Diagram */}
@@ -314,18 +321,6 @@ export default function HowItWorks() {
                                     borderColor={slide.arrowColor}
                                     mt="85px"
                                   />
-                                  {/* <Box
-                                    position="absolute"
-                                    right="0"
-                                    top="86px"
-                                    transform="translateY(-50%)"
-                                    width={0}
-                                    height={0}
-                                    borderTop="6px solid transparent"
-                                    borderBottom="6px solid transparent"
-                                    borderLeft="10px solid"
-                                    borderLeftColor="brand.500"
-                                  /> */}
                                 </Box>
                               </HStack>
                             </Box>
@@ -398,18 +393,6 @@ export default function HowItWorks() {
                                     borderColor={slide.arrowColor}
                                     mt="87px"
                                   />
-                                  {/* <Box
-                                    position="absolute"
-                                    left="0"
-                                    top="87px"
-                                    transform="translateY(-50%)"
-                                    width={0}
-                                    height={0}
-                                    borderTop="6px solid transparent"
-                                    borderBottom="6px solid transparent"
-                                    borderRight="10px solid"
-                                    borderRightColor="brand.500"
-                                  /> */}
                                 </Box>
                                 <Box
                                   w="2px"
@@ -494,18 +477,6 @@ export default function HowItWorks() {
                                     borderColor={slide.arrowColor}
                                     mt="85px"
                                   />
-                                  {/* <Box
-                                    position="absolute"
-                                    right="0"
-                                    top="86px"
-                                    transform="translateY(-50%)"
-                                    width={0}
-                                    height={0}
-                                    borderTop="6px solid transparent"
-                                    borderBottom="6px solid transparent"
-                                    borderLeft="10px solid"
-                                    borderLeftColor="gray.400"
-                                  /> */}
                                 </Box>
                               </HStack>
                             </Box>
@@ -596,21 +567,24 @@ export default function HowItWorks() {
                       ))}
                     </List>
 
-                    <Button
-                      colorScheme="blue"
-                      size="lg"
-                      px={8}
-                      py={6}
-                      fontSize="md"
-                      fontWeight="semibold"
-                      _hover={{
-                        transform: 'translateY(-2px)',
-                        boxShadow: 'lg',
-                      }}
-                      transition="all 0.3s"
-                    >
-                      {slide.buttonText}
-                    </Button>
+                    <Link href={slide.buttonLink} passHref>
+                      <Button
+                        as="a"
+                        colorScheme="blue"
+                        size="lg"
+                        px={8}
+                        py={6}
+                        fontSize="md"
+                        fontWeight="semibold"
+                        _hover={{
+                          transform: 'translateY(-2px)',
+                          boxShadow: 'lg',
+                        }}
+                        transition="all 0.3s"
+                      >
+                        {slide.buttonText}
+                      </Button>
+                    </Link>
                   </Box>
 
                   {/* Right Side - Flow Diagram */}
