@@ -3,7 +3,7 @@
 import { VStack, Text, HStack, Input, Button, useToast } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
-import { setCurrentStep, setLoading, setError, setAccessToken } from '@/store/authSlice';
+import { setCurrentStep, setLoading, setError } from '@/store/authSlice';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
