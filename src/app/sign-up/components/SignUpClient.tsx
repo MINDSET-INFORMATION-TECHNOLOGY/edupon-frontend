@@ -11,7 +11,6 @@ import { useAppSelector } from '@/hooks/reduxHooks';
 
 export default function SignUpClient() {
   const currentStep = useAppSelector((state) => state.auth.currentStep);
-  const role = useAppSelector((state) => state.auth.signupData.role);
 
   const getImageSrc = () => {
     if (currentStep === 1) return '/sign-up1.png';
