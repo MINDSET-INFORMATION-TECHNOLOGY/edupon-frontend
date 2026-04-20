@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
 import SignUpClient from './components/SignUpClient';
 
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function SignUpPage() {
-  return <SignUpClient />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignUpClient />
+    </Suspense>
+  );
 }
