@@ -18,7 +18,6 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useState, useMemo } from 'react';
 import NextLink from 'next/link';
-import { useRouter } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -65,7 +64,6 @@ export default function LoginStepOne({ nextStep }: Props) {
         throw new Error(data.message || 'Login failed');
       }
 
-      // Store the token
       if (data.token) {
         localStorage.setItem('accessToken', data.token);
 
@@ -75,8 +73,6 @@ export default function LoginStepOne({ nextStep }: Props) {
         }
         localStorage.setItem('userEmail', email);
 
-        // You might also get user name from the response
-        // For now, we'll extract from email
         const userName = email.split('@')[0] || 'User';
         localStorage.setItem('userName', userName);
       }
@@ -88,7 +84,6 @@ export default function LoginStepOne({ nextStep }: Props) {
         duration: 3000,
       });
 
-      // Move to welcome screen (Step 2)
       nextStep();
     } catch (error: any) {
       toast({
