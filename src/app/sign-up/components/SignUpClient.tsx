@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import AuthLayout from './AuthLayout';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
