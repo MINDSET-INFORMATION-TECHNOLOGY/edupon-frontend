@@ -1,4 +1,5 @@
 import { Container, VStack, Heading, Text, Button, Flex, Box, Image } from '@chakra-ui/react';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
@@ -15,9 +16,11 @@ export default function Hero() {
               learning into real opportunities through challenges, recognition, and collaboration.
             </Text>
 
-            <Button size="md" colorScheme="brand" width="auto">
-              Join EduPons
-            </Button>
+            <Link href="/sign-up" passHref>
+              <Button as="a" size="md" colorScheme="brand" width="auto">
+                Join EduPons
+              </Button>
+            </Link>
           </Flex>
           <Flex
             direction={'column'}

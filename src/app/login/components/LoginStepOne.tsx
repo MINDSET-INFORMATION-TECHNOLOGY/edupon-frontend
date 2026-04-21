@@ -13,20 +13,25 @@ import {
   InputRightElement,
   IconButton,
   Link,
+  useToast,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useState, useMemo } from 'react';
 import NextLink from 'next/link';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface Props {
   nextStep: () => void;
 }
 
 export default function LoginStepOne({ nextStep }: Props) {
+  const toast = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const isEmailValid = useMemo(() => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -36,13 +41,60 @@ export default function LoginStepOne({ nextStep }: Props) {
 
   const isFormValid = isEmailValid && isPasswordValid;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
 
     if (!isFormValid) return;
 
-    nextStep();
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Login failed');
+      }
+
+      if (data.token) {
+        localStorage.setItem('accessToken', data.token);
+
+        // Store user role and email for welcome screen
+        if (data.role) {
+          localStorage.setItem('userRole', data.role);
+        }
+        localStorage.setItem('userEmail', email);
+
+        const userName = email.split('@')[0] || 'User';
+        localStorage.setItem('userName', userName);
+      }
+
+      toast({
+        title: 'Login successful!',
+        description: 'Welcome back to EduPons.',
+        status: 'success',
+        duration: 3000,
+      });
+
+      nextStep();
+    } catch (error: any) {
+      toast({
+        title: 'Login failed',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -71,6 +123,7 @@ export default function LoginStepOne({ nextStep }: Props) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           borderRadius="10px"
+          isDisabled={isLoading}
         />
 
         <FormErrorMessage fontSize="11px">Please enter a valid email address.</FormErrorMessage>
@@ -90,6 +143,7 @@ export default function LoginStepOne({ nextStep }: Props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             borderRadius="10px"
+            isDisabled={isLoading}
           />
 
           <InputRightElement height="38px">
@@ -99,6 +153,7 @@ export default function LoginStepOne({ nextStep }: Props) {
               size="sm"
               icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
               onClick={() => setShowPassword(!showPassword)}
+              isDisabled={isLoading}
             />
           </InputRightElement>
         </InputGroup>
@@ -122,7 +177,9 @@ export default function LoginStepOne({ nextStep }: Props) {
         bg={isFormValid ? '#2F4AA0' : '#CBD5E1'}
         color="white"
         _hover={isFormValid ? { bg: '#253B80' } : {}}
-        isDisabled={!isFormValid}
+        isDisabled={!isFormValid || isLoading}
+        isLoading={isLoading}
+        loadingText="Logging in..."
       >
         Login
       </Button>
